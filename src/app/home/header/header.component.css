@@ -1,0 +1,10 @@
+.example-spacer {
+    flex: 1 1 auto;
+  }
+.example-containe{
+  height: 100%;
+}
+  
+.mat-drawer-container{
+  height: 100%;
+}
