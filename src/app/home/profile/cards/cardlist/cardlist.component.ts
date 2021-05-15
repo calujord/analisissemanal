@@ -5,6 +5,7 @@ import { StorageService } from 'src/app/services/auth/storage-service';
 import { UtilService } from 'src/app/services/utils/utils.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CardRemoveComponent } from '../card-remove/card-remove.component';
+import { CardFormComponent } from '../card-form/card-form.component';
 
 @Component({
   selector: 'app-cardlist',
@@ -29,14 +30,11 @@ export class CardlistComponent implements OnInit {
     this.creditCardService.setToken(this.stStorage.getCurrentToken()!);
     this.creditCardService.getCards().then((res) => this.dataSource = res);
   }
-  removeCard() {
-    let dialogRef = this.dialog.open(CardRemoveComponent, {
-      height: '400px',
-      width: '600px',
-    });
-    this.creditCardService.setToken(this.stStorage.getCurrentToken()!);
-    this.creditCardService.getCards().then((res) => this.dataSource = res);
-
+  removeCard(card: CardModel) {
+    let dialogRef = this.dialog.open(CardRemoveComponent,);
+  }
+  addCard() {
+    let dialogRef = this.dialog.open(CardFormComponent,);
   }
 
 }

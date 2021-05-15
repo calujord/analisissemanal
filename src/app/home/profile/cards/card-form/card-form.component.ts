@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-card-form',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CardFormComponent implements OnInit {
 
-  constructor() { }
+  formGroup!: FormGroup;
+  constructor(
+    fb: FormBuilder,
+  ) { }
 
   ngOnInit(): void {
+    this.formGroup = new FormGroup({
+      password: new FormControl('', [Validators.required, Validators.minLength(3)]),
+      username: new FormControl('', [Validators.required, Validators.email]),
+      chkremember: new FormControl('')
+    })
   }
 
 }

@@ -8,6 +8,8 @@ import { AuthModule } from './auth/auth.module';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeModule } from './home/home.module';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -20,6 +22,7 @@ import { HomeModule } from './home/home.module';
     HomeModule,
     BrowserAnimationsModule,
     HttpClientModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

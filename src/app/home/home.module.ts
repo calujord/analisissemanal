@@ -12,8 +12,6 @@ import { HeaderComponent } from './header/header.component';
 import { MatIcon, MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
-import { MatFormFieldModule } from '@angular/material/form-field/form-field-module';
-import { MatInputModule } from '@angular/material/input/input-module';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { CardlistComponent } from './profile/cards/cardlist/cardlist.component';
@@ -21,7 +19,13 @@ import { CardFormComponent } from './profile/cards/card-form/card-form.component
 import { MatTableModule } from '@angular/material/table';
 import { CardRemoveComponent } from './profile/cards/card-remove/card-remove.component';
 import { MatDialogModule } from '@angular/material/dialog';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { MatRippleModule } from '@angular/material/core';
+import {
+  MatFormFieldModule, MatLabel
+} from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -38,6 +42,14 @@ import { MatDialogModule } from '@angular/material/dialog';
     CardFormComponent,
     CardRemoveComponent,
 
+
+  ],
+  exports: [
+    MatRippleModule,
+    MatButtonModule,
+    MatIconModule,
+    FormsModule,
+    MatFormFieldModule,
   ],
   imports: [
     CommonModule,
@@ -47,7 +59,13 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatSidenavModule,
     MatListModule,
     MatTableModule,
-    MatDialogModule
+    MatDialogModule,
+    ReactiveFormsModule,
+    RouterModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+
 
   ]
 })

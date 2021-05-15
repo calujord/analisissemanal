@@ -1,3 +1,7 @@
+
+<button mat-raised-button color="primary" (click)="addCard()">
+    Agregar
+</button>
 <div class="col s12">
     <table width="100%" mat-table [dataSource]="dataSource" class="mat-elevation-z8">
       
@@ -26,7 +30,7 @@
           <ng-container matColumnDef="token">
             <th mat-header-cell *matHeaderCellDef> test </th>
             <td mat-cell *matCellDef="let element"> 
-                <Button (click)="remove(element)" type="button" mat-raised-button color="pirmary"><mat-icon>delete</mat-icon></Button> 
+                <Button (click)="removeCard(element)" type="button" mat-raised-button color="pirmary"><mat-icon>delete</mat-icon></Button> 
             </td>
           </ng-container>
       
