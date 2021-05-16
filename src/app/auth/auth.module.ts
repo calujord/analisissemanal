@@ -10,10 +10,12 @@ import { MatRippleModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatRadioModule } from '@angular/material/radio';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-
-
+import { MatCardModule } from '@angular/material/card';
+import { MatSelectModule } from '@angular/material/select';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,10 @@ import { RouterModule } from '@angular/router';
     MatButtonModule,
     MatIconModule,
     FormsModule,
+    MatRadioModule,
+    MatCardModule,
+    MatSelectModule,
+    MatCheckboxModule,
   ],
   imports: [
     CommonModule,
@@ -40,9 +46,11 @@ import { RouterModule } from '@angular/router';
     MatIconModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule
-
-
+    RouterModule,
+    MatRadioModule,
+    MatCardModule,
+    MatSelectModule,
+    MatCheckboxModule,
   ],
 
 })
