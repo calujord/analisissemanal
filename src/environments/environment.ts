@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   PUBLIC_KEY: "pk_17a53ae0fb33bc684729f38d8eb02986",
   SECRET_KEY: "sk_30dfe19aa9b61d549b92a5054fa13707",
-  lang: "sk_30dfe19aa9b61d549b92a5054fa13707",
+  lang: "es",
   API_URL: "https://www.analisissemanal.com/api"
 };
 

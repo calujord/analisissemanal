@@ -1,0 +1,9 @@
+<mat-card (click)="showEdition(edition)" class="card-edition-information">
+    <img class="image-cover" src="{{edition.cover}}" alt="">
+    <mat-card-header>
+        <mat-card-title class="title">{{edition.title|slice:0:40}}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        {{edition.description| slice:0:180}}
+    </mat-card-content>
+</mat-card>

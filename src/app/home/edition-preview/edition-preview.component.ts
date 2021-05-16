@@ -1,0 +1,34 @@
+import { Component, Inject, OnInit } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { VirtualTimeScheduler } from 'rxjs';
+import { Edition, EditionRead } from '../../models/home/home.model';
+import { StorageService } from '../../services/auth/storage-service';
+import { EditionService } from '../../services/edition-service/EditionServices';
+import { HomeService } from '../../services/home/home.service';
+
+@Component({
+  selector: 'app-edition-preview',
+  templateUrl: './edition-preview.component.html',
+  styleUrls: ['./edition-preview.component.sass', './edition-preview.component.css']
+})
+export class EditionPreviewComponent implements OnInit {
+  public editionRead: EditionRead;
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: Edition,
+    private editionService: EditionService,
+    private stStorage: StorageService,
+  ) {
+    this.editionService.setToken(stStorage.getCurrentToken());
+    console.log(data);
+    this.editionService.getEdition(data).then((res) => this.editionRead = res);
+
+  }
+
+  canReadEdition(): boolean {
+    return this.editionRead.status_access == "CAN_READ";
+  }
+  ngOnInit(): void {
+
+  }
+
+}

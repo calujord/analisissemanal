@@ -1,17 +1,42 @@
-<mat-toolbar  color="primary">
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-     <mat-icon>menu</mat-icon>
-   </button>
-   <span>Análisis semanal</span>
-   <span class="example-spacer"></span>
-   <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-     <mat-icon>favorite</mat-icon>
-   </button>
-   <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-    <mat-icon>share</mat-icon>
+<mat-toolbar position-fixed color="primary">
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+    <mat-icon>menu</mat-icon>
   </button>
-  <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon" (click)="logout()">
-   <mat-icon>share</mat-icon>
- </button>
- </mat-toolbar>
-
+  <span>Análisis semanal</span>
+  <span class="example-spacer"></span>
+  <button mat-button aria-label="Example icon-button with heart icon">
+    <mat-icon>home</mat-icon> Inicio
+  </button>
+  <button mat-button aria-label="Example icon-button with heart icon">
+    <mat-icon>explore</mat-icon> Descubrir
+  </button>
+  <button mat-button aria-label="Example icon-button with heart icon">
+    <mat-icon>account_balance</mat-icon>
+    Pagos
+  </button>
+  <button mat-button [matMenuTriggerFor]="menu">
+    <mat-icon>business</mat-icon>
+    {{getUserName()}}
+  </button>
+  <mat-menu #menu="matMenu" xPosition="before">
+    <button mat-menu-item>
+      <mat-icon>business</mat-icon>
+      Información fiscal
+    </button>
+    <button mat-menu-item>
+      <mat-icon>card_membership</mat-icon>
+      Suscripciones
+    </button>
+    <button mat-menu-item>
+      <mat-icon>devices</mat-icon> Dispositivos
+    </button>
+    <button mat-menu-item>
+      <mat-icon>credit_card</mat-icon>
+      Tarjeta de crédito
+    </button>
+    <button (click)="logout()" mat-menu-item>
+      <mat-icon>logout</mat-icon>
+      Cerrar sesión
+    </button>
+  </mat-menu>
+</mat-toolbar>

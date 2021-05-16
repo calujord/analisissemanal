@@ -7,7 +7,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrls: ['./card-remove.component.sass']
 })
 export class CardRemoveComponent implements OnInit {
-
+  breakpoint = 3;
   constructor(@Inject(MAT_DIALOG_DATA) public data: { name: string }) { }
 
   ngOnInit(): void {

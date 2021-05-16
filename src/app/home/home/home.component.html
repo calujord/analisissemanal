@@ -1,26 +1,36 @@
-<app-header></app-header>
+<!-- <app-cardlist>
+</app-cardlist> -->
 
-<mat-drawer-container class="example-container">
-    <mat-drawer mode="side" opened>
-        <mat-list role="list">
-            <mat-list-item role="listitem">Item 1</mat-list-item>
-            <mat-list-item role="listitem">Item 2</mat-list-item>
-            <mat-list-item role="listitem">Item 3</mat-list-item>
-          </mat-list>
-    </mat-drawer>
-    <mat-drawer-content>
-        <div  style="height: 100%; flex: 1;"></div>
-        <li *ngFor="let item of rates">
-            {{item.label}}
-        </li>
-        <mat-list role="list">
-            <mat-list-item role="listitem">Item 1</mat-list-item>
-            <mat-list-item role="listitem">Item 2</mat-list-item>
-            <mat-list-item role="listitem">Item 3</mat-list-item>
-          </mat-list>
-          <app-cardlist>
-          </app-cardlist>
-    </mat-drawer-content>
+<div *ngIf="homeModel != null">
+    <div>
+        <mat-carousel timings="250ms ease-in" [autoplay]="true" interval="5000" color="accent" maxWidth="auto"
+            proportion="25" slides="5" [loop]="true" [hideArrows]="false" [hideIndicators]="false" [useKeyboard]="true"
+            [useMouseWheel]="false" orientation="ltr">
+            <mat-carousel-slide #matCarouselSlide *ngFor="let slide of homeModel.banners; let i = index"
+                [image]="slide.image" overlayColor="#00000040" [hideOverlay]="false"></mat-carousel-slide>
+        </mat-carousel>
+    </div>
+    <div class="container">
+        <div>
+            <h1 class="title-destacados">Ediciones destacadas</h1>
+            <div fxLayout="row wrap">
+                <div *ngFor="let item of homeModel.last_editions">
+                    <app-edition-card-item [edition]="item" [style.padding-top.px]="20"></app-edition-card-item>
+                </div>
+            </div>
+
+            <div *ngFor="let el of homeModel.edition_by_category" class="edition-by-category">
+                <h2 class="title-destacados">{{el.category.name}} </h2>
 
 
-  </mat-drawer-container>
+                <div fxLayout="row wrap">
+                    <div *ngFor="let item of el.editions">
+                        <app-edition-card-item [edition]="item"></app-edition-card-item>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>

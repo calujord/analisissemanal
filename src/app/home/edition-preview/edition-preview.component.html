@@ -1,0 +1,25 @@
+<div *ngIf="editionRead != null">
+    <div *ngIf="canReadEdition()">
+        <pdf-viewer [original-size]="false" [fit-to-page]="true" [page-width]="500" [src]="editionRead.edition.source"
+            [render-text]="false" style="display: block;">
+        </pdf-viewer>
+    </div>
+    <div *ngIf="!canReadEdition()">
+        <h1 mat-dialog-title>{{editionRead.edition.title}}</h1>
+        <div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="10px"
+            fxLayoutGap.xs="0">
+            <div class="item item-1" fxFlex="40%">
+                <img src="{{editionRead.edition.cover}}" width="100%" alt="">
+            </div>
+            <div class="item item-2" fxFlex="60%" fxFlexOrder="3">
+                aquí va el componente de suscripción
+            </div>
+        </div>
+    </div>
+    <div *ngIf="editionRead == null" class="spinner-content">
+        <sa-spinner-dotted class="spinner" fxFlex="row" fxLayoutAlign="center center" [size]="50" [thickness]="100"
+            [speed]="100" color="#dd0031"></sa-spinner-dotted>
+        <br>
+        <p fxFlexAlign="center">Cargando información de ediciones</p>
+    </div>
+</div>
