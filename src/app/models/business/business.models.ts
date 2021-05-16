@@ -1,4 +1,4 @@
-import { Area } from "../utils";
+import { Area, Country } from "../utils";
 
 export interface BusinessModel {
     pk: number;
@@ -9,7 +9,7 @@ export interface BusinessModel {
     address: string;
     city: string;
     area: Area;
-    country: Area;
+    country: Country;
     type_payment: null;
     person_type: string;
     avatar: null;
