@@ -21,7 +21,10 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
   }
   getUserName() {
-    return this.stService.getCurrentSession().business.name;
+    if (this.stService.getCurrentSession() != null)
+      return this.stService.getCurrentSession().business.name;
+    else
+      return "";
   }
 
   logout() {

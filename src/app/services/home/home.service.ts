@@ -23,6 +23,10 @@ export class HomeService {
         this.connect.endPoint = "/countries";
         return this.connect.httpGet().then((e) => e = e["countries"]);
     }
+    getAreas(): Promise<Area[]> {
+        this.connect.endPoint = "/areas";
+        return this.connect.httpGet().then((e) => e = e["areas"]);
+    }
     getRates(): Promise<RateModel[]> {
         this.connect.endPoint = "/as-rate";
         return this.connect.httpGet().then((e) => e = e["rates"]);

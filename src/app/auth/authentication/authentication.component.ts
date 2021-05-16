@@ -9,7 +9,6 @@ import { AuthComponentService } from '../AuthComponentService';
   styleUrls: ['./authentication.component.sass']
 })
 export class AuthenticationComponent implements OnInit {
-  // comp: AuthCompo = AuthComponentSel.LOGIN;
 
   constructor(
     public authCompService: AuthComponentService
