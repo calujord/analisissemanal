@@ -14,7 +14,7 @@ import { AuthComponentService } from '../AuthComponentService';
 @Component({
   selector: 'app-sign-in',
   templateUrl: './sign-in.component.html',
-  styleUrls: ['./sign-in.component.sass']
+  styleUrls: ['./sign-in.component.css']
 })
 export class SignInComponent implements OnInit {
   hide_pass1: Boolean = true;
@@ -56,6 +56,9 @@ export class SignInComponent implements OnInit {
     this.homeService.getAreas().then((res) => this.areaList = res);
 
   }
+  stepLabel1='T de Empresa';
+  stepLabel2='Inf fiscal';
+  stepLabel3='Inf usuario';
 
   onSignIn() {
     /*
