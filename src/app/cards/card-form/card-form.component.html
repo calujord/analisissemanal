@@ -1,0 +1,63 @@
+<form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+    <mat-dialog-content>
+
+        <h2 mat-dialog-title>Agregar tarjeta de crédito</h2>
+        <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="10px">
+            <div fxFlex="50%">
+                <mat-form-field appearance="outline">
+                    <mat-label>Número</mat-label>
+                    <input matInput placeholder="Número de tarjeta de crédito" formControlName="cardNumber">
+                    <mat-icon matSuffix>credit_card</mat-icon>
+                    <mat-hint>Número de tarjeta de crédito</mat-hint>
+                </mat-form-field>
+            </div>
+            <div fxFlex="50%">
+                <mat-form-field appearance="outline">
+                    <mat-label>Nombre</mat-label>
+                    <input type="text" matInput placeholder="Nombre de tarjeta" formControlName="cardName">
+                    <mat-icon matSuffix>account_circle</mat-icon>
+                    <mat-hint>Nombre de la tarjeta</mat-hint>
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="10px">
+
+            <div fxFlex="30%">
+                <mat-form-field appearance="outline">
+                    <mat-label>Mes</mat-label>
+                    <mat-select [(ngModel)]="month" formControlName="cardMonth">
+                        <mat-option [value]="card" *ngFor="let card of [1,2,3,4,5,6,7,8,9,10,11,12]">{{card.bin}}
+                            {{card}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div fxFlex="40%">
+                <mat-form-field appearance="outline">
+                    <mat-label>Año</mat-label>
+                    <mat-select [(ngModel)]="yearSelected" formControlName="cardYear">
+                        <mat-option [value]="y" *ngFor="let y of [year, year +1, year +2, year +3, year +4]">
+                            {{y}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div fxFlex="30%">
+                <mat-form-field appearance="outline">
+                    <mat-label>CVC</mat-label>
+                    <input type="CVC" matInput placeholder="Contraseña" formControlName="cardCVC">
+                    <mat-icon matSuffix>vpn_key</mat-icon>
+                    <mat-hint>Código cvc</mat-hint>
+                </mat-form-field>
+            </div>
+
+        </div>
+    </mat-dialog-content>
+
+    <mat-dialog-actions align="end">
+        <button mat-button [mat-dialog-close]="null">Cancelar</button>
+        <button mat-raised-button type="submit" color="primary">Agregar</button>
+        <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
+    </mat-dialog-actions>
+
+</form>

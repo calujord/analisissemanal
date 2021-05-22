@@ -13,22 +13,34 @@ import { HomeService } from '../../services/home/home.service';
 })
 export class EditionPreviewComponent implements OnInit {
   public editionRead: EditionRead;
+  public createNewSubscription: boolean = false;
+  public isLoadedPdf: boolean = true;
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: Edition,
     private editionService: EditionService,
     private stStorage: StorageService,
   ) {
     this.editionService.setToken(stStorage.getCurrentToken());
-    console.log(data);
     this.editionService.getEdition(data).then((res) => this.editionRead = res);
-
   }
+  reload() {
 
+    this.editionService.setToken(this.stStorage.getCurrentToken());
+    this.editionService.getEdition(this.data).then((res) => this.editionRead = res);
+  }
   canReadEdition(): boolean {
     return this.editionRead.status_access == "CAN_READ";
   }
   ngOnInit(): void {
 
   }
-
+  showSuscription() {
+    this.createNewSubscription = true;
+  }
+  onFinishedPdfPreview(event) {
+    this.isLoadedPdf = true;
+  }
+  showButtonWantToSubscribe() {
+    return !this.createNewSubscription && this.editionRead && this.editionRead.status_access != 'CAN_READ';
+  }
 }

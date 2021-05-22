@@ -5,6 +5,8 @@ import { ChangePasswordComponent } from './auth/recovery-password/change-passwor
 import { RequestRecoveryPasswordComponent } from './auth/recovery-password/request-recovery-password/request-recovery-password.component';
 import { SignInComponent } from './auth/sign-in/sign-in.component';
 import { HomeComponent } from './home/home/home.component';
+import { SettingsManageComponent } from './settings/settings-manage/settings-manage.component';
+import { SettingsModule } from './settings/settings.module';
 
 const routes: Routes = [
   {
@@ -22,10 +24,11 @@ const routes: Routes = [
   {
     path: 'home', component: HomeComponent
   },
+  { path: 'settings', loadChildren: () => SettingsModule }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { enableTracing: true })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

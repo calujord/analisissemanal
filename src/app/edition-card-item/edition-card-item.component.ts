@@ -22,7 +22,6 @@ export class EditionCardItemComponent implements OnInit {
 
   showEdition(edition: Edition) {
     let dialogRef = this.dialog.open(EditionPreviewComponent, {
-      height: '600px',
       width: '800px', data: edition
     });
   }

@@ -7,10 +7,10 @@
   <button mat-button aria-label="Example icon-button with heart icon">
     <mat-icon>home</mat-icon> Inicio
   </button>
-  <button mat-button aria-label="Example icon-button with heart icon">
+  <button mat-button aria-label="Example icon-button with heart icon" routerLink='/discovery'>
     <mat-icon>explore</mat-icon> Descubrir
   </button>
-  <button mat-button aria-label="Example icon-button with heart icon">
+  <button mat-button aria-label="Example icon-button with heart icon" routerLink='/settings/payment'>
     <mat-icon>account_balance</mat-icon>
     Pagos
   </button>
@@ -19,18 +19,18 @@
     {{getUserName()}}
   </button>
   <mat-menu #menu="matMenu" xPosition="before">
-    <button mat-menu-item>
+    <button mat-menu-item routerLink='/settings/fiscal-information'>
       <mat-icon>business</mat-icon>
       Información fiscal
     </button>
-    <button mat-menu-item>
+    <button mat-menu-item routerLink='/settings/subcription'>
       <mat-icon>card_membership</mat-icon>
       Suscripciones
     </button>
-    <button mat-menu-item>
+    <button mat-menu-item routerLink='/settings/devices'>
       <mat-icon>devices</mat-icon> Dispositivos
     </button>
-    <button mat-menu-item>
+    <button mat-menu-item routerLink='/settings/creditcard'>
       <mat-icon>credit_card</mat-icon>
       Tarjeta de crédito
     </button>

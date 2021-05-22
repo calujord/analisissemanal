@@ -18,7 +18,17 @@ export class CreditcardService {
     setToken(token: string) {
         this.connect.token = token;
     }
+    /**
+     * 
+     * @param number 
+     * @param name 
+     * @param month 
+     * @param year 
+     * @param cvc 
+     * @returns 
+     */
     addCard(number: number, name: string, month: number, year: number, cvc: number): Promise<CardModel> {
+
         this.connect.endPoint = "/my-credit-card/add/";
         return this.connect.httpPost({
             "number": number,
@@ -27,15 +37,18 @@ export class CreditcardService {
             "year": year,
             "cvc": cvc,
         }).then((e) => {
-            return e["cards"];
+            if (e["error"]) {
+                throw new Error(e["error"]["type"]);
+            }
+            return e["card"];
         });
-    }
+    }// 4111111111111111
     removeCard(card: CardModel): Promise<boolean> {
         this.connect.endPoint = "/my-credit-card/remove/";
         return this.connect.httpPost({
             "token_card": card.token
         }).then((e) => {
-            return e["cards"];
+            return e["message"];
         });
     }
 }

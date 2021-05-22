@@ -19,6 +19,9 @@ import { MatCarouselModule } from '@ngmodule/material-carousel';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatSelectModule } from '@angular/material/select';
+import { SettingsModule } from './settings/settings.module';
+import { CardsModule } from './cards/cards.module';
 
 @NgModule({
   declarations: [
@@ -28,21 +31,26 @@ import { MatMenuModule } from '@angular/material/menu';
   exports: [
   ],
   imports: [
+    FlexLayoutModule,
     MatProgressSpinnerModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
     MatToolbarModule,
+    FormsModule,
     MatListModule,
     MatSidenavModule,
     MatCarouselModule,
     MatCheckboxModule,
     MatCardModule,
-    FlexLayoutModule,
+    MatMenuModule,
+    MatSelectModule,
+    CardsModule,
+    SettingsModule,
     AuthModule,
     HomeModule,
-    MatMenuModule
+
 
 
   ],

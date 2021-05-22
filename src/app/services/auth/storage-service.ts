@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Router } from '@angular/router';
 import { BusinessAuthentication } from "src/app/models/business/business-authentication";
+import { BusinessModel } from "src/app/models/business/business.models";
 import { Session } from "src/app/models/business/session";
 
 @Injectable({
@@ -19,7 +20,10 @@ export class StorageService {
         this.businessAuthentication = session;
         this.localStorageService.setItem('currentBusiness', JSON.stringify(session));
     }
-
+    setBusiness(business: BusinessModel) {
+        this.businessAuthentication.business = business;
+        this.localStorageService.setItem('currentBusiness', JSON.stringify(this.businessAuthentication));
+    }
     loadSessionData(): any {
         if (this.localStorageService.getItem('currentBusiness') != null) {
             return JSON.parse(this.localStorageService.getItem('currentBusiness') as string);

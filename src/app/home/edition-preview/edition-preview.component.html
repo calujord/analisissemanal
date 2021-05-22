@@ -1,25 +1,45 @@
-<div *ngIf="editionRead != null">
-    <div *ngIf="canReadEdition()">
-        <pdf-viewer [original-size]="false" [fit-to-page]="true" [page-width]="500" [src]="editionRead.edition.source"
-            [render-text]="false" style="display: block;">
-        </pdf-viewer>
-    </div>
-    <div *ngIf="!canReadEdition()">
-        <h1 mat-dialog-title>{{editionRead.edition.title}}</h1>
-        <div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="10px"
-            fxLayoutGap.xs="0">
-            <div class="item item-1" fxFlex="40%">
-                <img src="{{editionRead.edition.cover}}" width="100%" alt="">
+<div *ngIf="editionRead == null" class="spinner-content">
+    <sa-spinner-dotted class="spinner" fxLayoutAlign="center center" [size]="50" [thickness]="100" [speed]="100"
+        color="#dd0031"></sa-spinner-dotted>
+    <br>
+    <p fxFlexAlign="center">Cargando información de ediciones</p>
+</div>
+
+<mat-dialog-content class="mat-typography" *ngIf="editionRead != null">
+    <div *ngIf="editionRead != null">
+        <div *ngIf="canReadEdition()">
+            <pdf-viewer [original-size]="false" [fit-to-page]="true" [page-width]="500"
+                (after-load-complete)="onFinishedPdfPreview($event)" [src]="editionRead.edition.source"
+                [render-text]="false" style="display: block;">
+            </pdf-viewer>
+            <div *ngIf="isLoadedPdf">
+
+                <sa-spinner-dotted class="spinner" *ngIf="isLoadedPdf" fxLayoutAlign="center center" [size]="50"
+                    [thickness]="100" [speed]="100" color="#dd0031"></sa-spinner-dotted>
+                <br>
+                <p style="text-align: center;">Cargando documento</p>
             </div>
-            <div class="item item-2" fxFlex="60%" fxFlexOrder="3">
-                aquí va el componente de suscripción
+            <br>
+        </div>
+        <div *ngIf="!canReadEdition()">
+            <div mat-dialog-title>{{editionRead.edition.title}}</div>
+            <div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="10px"
+                fxLayoutGap.xs="0">
+                <div class="item item-1" fxFlex="100%" *ngIf="!createNewSubscription">
+                    <img src="{{editionRead.edition.cover}}" width="100%" alt="">
+                </div>
+                <div class="item item-2" fxFlex="100%" *ngIf="createNewSubscription">
+                    <app-create-subscription (onSuccessSubscription)="reload()"></app-create-subscription>
+                </div>
             </div>
         </div>
     </div>
-    <div *ngIf="editionRead == null" class="spinner-content">
-        <sa-spinner-dotted class="spinner" fxFlex="row" fxLayoutAlign="center center" [size]="50" [thickness]="100"
-            [speed]="100" color="#dd0031"></sa-spinner-dotted>
-        <br>
-        <p fxFlexAlign="center">Cargando información de ediciones</p>
-    </div>
-</div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+
+    <button button (click)="showSuscription()" *ngIf="showButtonWantToSubscribe()" mat-raised-button
+        color="primary">Quiero
+        suscribirme</button>
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Cerrar</button>
+</mat-dialog-actions>

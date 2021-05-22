@@ -17,6 +17,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatStepperModule } from '@angular/material/stepper';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -28,19 +29,10 @@ import { MatStepperModule } from '@angular/material/stepper';
 
   ],
   exports: [
-    MatFormFieldModule,
-    MatRippleModule,
-    MatInputModule,
-    MatButtonModule,
-    MatIconModule,
-    FormsModule,
-    MatRadioModule,
-    MatCardModule,
-    MatSelectModule,
-    MatCheckboxModule,
   ],
   imports: [
     CommonModule,
+    FlexLayoutModule,
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,

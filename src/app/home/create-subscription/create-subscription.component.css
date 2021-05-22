@@ -1,0 +1,41 @@
+.subscripcion-content {
+    padding: 20px;
+    border: 1px solid #b7b7b7;
+    border-radius: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.price{
+    text-align: right;
+}
+mat-form-field{
+    width: 100%;
+}
+.listTile h4{
+
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 0px;
+    padding-right: 6px;
+}
+.listTile p{
+    font-size: 12px;
+    font-weight: 400;
+    margin-bottom: 7px;
+}
+.title-samples h2 {
+    margin: 0;
+}
+.title-samples p {
+    font-size: 13px;
+}
+.currency{
+    text-align: right;
+}
+.success-icon{
+    font-size: 50px;
+    color: green;
+}
+.congrats{
+    text-align: center;
+}

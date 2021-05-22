@@ -1,0 +1,70 @@
+<h2>Editar información fiscal</h2>
+<form [formGroup]="businessProfileForm" (ngSubmit)="saveBusiness()">
+    <div fxLayout="column">
+        <mat-radio-group class="radio-group" aria-labelledby="seleccione tipo de cuenta" formControlName="person_type">
+            <mat-radio-button class="radio-btn" [value]="'B'">Empresa</mat-radio-button>
+            <mat-radio-button class="radio-btn" [value]="'P'">Persona</mat-radio-button>
+        </mat-radio-group>
+        <br>
+        <!-- <label *ngIf="business.person_type == 'B'">Información Fiscal de la Empresa</label>
+        <label *ngIf="business.person_type == 'P'">Información Personal</label> -->
+        <mat-form-field appearance="outline">
+            <mat-label>Correo electrónico</mat-label>
+            <input matInput placeholder="Correo electrónico" formControlName="username">
+            <mat-icon matSuffix>account_circle</mat-icon>
+        </mat-form-field>
+        <div fxLayout="row" fxLayoutGap="12px">
+
+            <mat-form-field appearance="outline" fxFlex="50%">
+                <mat-label>RUC</mat-label>
+                <input matInput placeholder="RUC" formControlName="ruc">
+                <mat-icon matSuffix>account_circle</mat-icon>
+            </mat-form-field>
+            <mat-form-field appearance="outline" fxFlex="50%">
+                <mat-label>Nombre Fiscal</mat-label>
+                <input matInput placeholder="Nombre fiscal" formControlName="fiscal_name">
+                <mat-icon matSuffix>account_circle</mat-icon>
+            </mat-form-field>
+        </div>
+
+        <div fxLayout="row" fxLayoutGap="12px">
+
+
+            <mat-form-field appearance="outline" fxFlex="50%">
+                <mat-label>Seleccione Pais</mat-label>
+                <mat-select formControlName="country">
+                    <mat-option [value]="c.pk" *ngFor="let c of countryList">{{c.name}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="outline" *ngIf="businessProfileForm.get('country').value == '1'" fxFlex="50%">
+                <mat-label>Seleccione provincia</mat-label>
+                <mat-select formControlName="area">
+                    <mat-option [value]="c.pk" *ngFor="let c of cities">{{c.name}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayoutGap="12px">
+
+            <mat-form-field appearance="outline" fxFlex="50%">
+                <mat-label>Ciudad</mat-label>
+                <input matInput placeholder="Ciudad" formControlName="city">
+                <mat-icon matSuffix>account_circle</mat-icon>
+            </mat-form-field>
+            <mat-form-field appearance="outline" fxFlex="50%">
+                <mat-label>Dirección</mat-label>
+                <input matInput placeholder="Dirección" formControlName="address">
+                <mat-icon matSuffix>account_circle</mat-icon>
+            </mat-form-field>
+        </div>
+        <mat-form-field appearance="outline">
+            <mat-label>Teléfono</mat-label>
+            <input matInput placeholder="Teléfono" formControlName="phone">
+            <mat-icon matSuffix>account_circle</mat-icon>
+        </mat-form-field>
+    </div>
+    <mat-card-actions>
+        <button type="submit" mat-raised-button color="primary">
+            Guardar
+        </button>
+    </mat-card-actions>
+</form>

@@ -31,10 +31,21 @@ export class CardlistComponent implements OnInit {
     this.creditCardService.getCards().then((res) => this.dataSource = res);
   }
   removeCard(card: CardModel) {
-    let dialogRef = this.dialog.open(CardRemoveComponent,);
+    let dialogRef = this.dialog.open(CardRemoveComponent, {
+      data: card
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result != null)
+        this.getCards();
+    });
   }
   addCard() {
     let dialogRef = this.dialog.open(CardFormComponent,);
+    dialogRef.afterClosed().subscribe(result => {
+      if (result != null)
+        this.getCards();
+    });
   }
 
 }

@@ -1,0 +1,152 @@
+<div *ngIf="subscriptionSuccess">
+    <div fxLayout="row" fxLayoutAlign="space-around center">
+        <div fxFlex="50%">
+            <div class="subscripcion-content">
+                <div class="congrats">
+                    <mat-icon class="success-icon">check_circle</mat-icon>
+                    <p>Felicidades ya estás suscrito a Análisis Semanal</p>
+
+                    <p><button mat-button mat-raised-button color="primary" (click)="readEdition()">Leer
+                            artículo</button></p>
+                    <p><a mat-button mat-raised-button target="_blank" color="link"
+                            href="{{bsp.balance.url_invoice}}">Descargar
+                            factura</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div *ngIf="!subscriptionSuccess">
+    <div class="row" *ngIf="ratesList.length>0">
+        <div fxLayout="row">
+
+            <div class="subscripcion-content" fxFlex="50%">
+                <div fxLayout="row">
+                    <div fxFlex="50%">
+                        <h3>{{rateSelected.label}}</h3>
+                    </div>
+                    <div fxFlex="50%" class="price">
+                        <label for="">$ {{rateSelected.base_price}}</label>
+                    </div>
+                </div>
+
+                <div>
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>Tipo de suscripción</mat-label>
+                        <mat-select [(ngModel)]="rateSelected">
+                            <mat-option [value]="item" *ngFor="let item of ratesList">{{item.label}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div *ngIf="ratesList == null">
+
+                    <sa-spinner-dotted class="spinner" fxFlex="row" fxLayoutAlign="center center" [size]="50"
+                        [thickness]="100" [speed]="100" color="#dd0031"></sa-spinner-dotted>
+                    <br>
+                    <p fxFlexAlign="center">Cargando</p>
+                </div>
+
+                <div>
+                    <h2>Accesos digitales</h2>
+                    <p>Con tu suscripción tienes 2 dispositivos incluidos </p>
+
+                    <div fxLayout="row">
+                        <div class="listTile">
+                            <h4>Número de dispositivos en Inglés</h4>
+                            <p>Precio: ${{rateSelected.price_extra_device}} </p>
+                        </div>
+                        <app-add-item-cart [cant]="deviceEn" (onChange)="onChangeDevicesEn($event)"></app-add-item-cart>
+                    </div>
+                    <div fxLayout="row">
+                        <div class="listTile">
+                            <h4>Número de dispositivos en Español</h4>
+                            <p>Precio: ${{rateSelected.price_extra_device}}</p>
+                        </div>
+                        <app-add-item-cart [cant]="deviceEs" (onChange)="onChangeDevicesEs($event)"></app-add-item-cart>
+                    </div>
+                </div>
+            </div>
+
+            <div class="subscripcion-content" fxFlex="50%">
+                <div class="title-samples">
+                    <h2>Ejemplares impresos</h2>
+                    <p>Número de copias impresas </p>
+
+                    <div fxLayout="row">
+                        <div fxFlex="60%">
+
+                            <div class="listTile">
+                                <h4>Inglés</h4>
+                                <p>Precio: ${{rateSelected.physical_price_en}}</p>
+                            </div>
+                        </div>
+                        <div fxFlex="40%">
+                            <app-add-item-cart [cant]="printerEn" (onChange)="onChangePrinterEn($event)">
+                            </app-add-item-cart>
+                        </div>
+                    </div>
+                    <div fxLayout="row">
+                        <div fxFlex="60%">
+                            <div class="listTile">
+                                <h4>Español</h4>
+                                <p>Precio: ${{rateSelected.physical_price_es}}</p>
+                            </div>
+                        </div>
+                        <div fxFlex="40%">
+                            <app-add-item-cart [cant]="printerEs" (onChange)="onChangePrinterEs($event)">
+                            </app-add-item-cart>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h2>Resumen</h2>
+                    <div fxLayout="row">
+                        <div fxFlex="50%">
+                            <b>Importe</b>
+                        </div>
+                        <div fxFlex="50%" class="currency">
+                            <label>$ {{getImporte() | number:'1.2-2'}}</label>
+                        </div>
+                    </div>
+                    <div fxLayout="row">
+                        <div fxFlex="50%">
+                            <b>Impuestos</b>
+                        </div>
+                        <div fxFlex="50%" class="currency">
+                            <label>$ {{getImpuesto() | number:'1.2-2'}}</label>
+                        </div>
+                    </div>
+                    <div fxLayout="row">
+                        <div fxFlex="50%">
+                            <b>Total</b>
+                        </div>
+                        <div fxFlex="50%" class="currency">
+                            <label>$ {{getTotal() | number:'1.2-2'}}</label>
+                        </div>
+                    </div>
+                    <br>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Seleccione una tarjeta de crédito</mat-label>
+                        <mat-select [(ngModel)]="cardSelected">
+                            <mat-option [value]="card" *ngFor="let card of cardList">{{card.bin}}
+                                ({{card.expiry_month}}/{{card.expiry_year}})
+                            </mat-option>
+                            <mat-option (click)="onOpenDialogCreditCard()">
+                                Agregar nueva tarjeta
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <button color="primary" mat-raised-button (click)="doSubscription()">Suscribirme ahora</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="" *ngIf="ratesList.length == 0">
+        <sa-spinner-dotted class="spinner" fxLayoutAlign="center center" [size]="50" [thickness]="100" [speed]="100"
+            color="#dd0031"></sa-spinner-dotted>
+    </div>
+</div>

@@ -1,0 +1,36 @@
+<form [formGroup]="businessProfileForm" (ngSubmit)="saveBusiness()">
+    <h2 style="    margin-bottom: 0px;" mat-dialog-title>Datos para envío </h2>
+    <p>Ediciones impresas en: {{data.edition_physical}}</p>
+
+    <mat-dialog-content class="mat-typography">
+        <div fxLayout="column">
+            <mat-form-field appearance="outline">
+                <mat-label>Nombre</mat-label>
+                <input matInput placeholder="Nombre" formControlName="name">
+                <mat-icon matSuffix>account_circle</mat-icon>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Dirección</mat-label>
+                <input matInput placeholder="Dirección" formControlName="full_address">
+                <mat-icon matSuffix>import_contacts</mat-icon>
+            </mat-form-field>
+            <div fxLayout="row" fxLayoutGap="12px">
+
+                <mat-form-field appearance="outline" fxFlex="49%">
+                    <mat-label>Ciudad</mat-label>
+                    <input matInput placeholder="Teléfono" formControlName="city">
+                    <mat-icon matSuffix>place</mat-icon>
+                </mat-form-field>
+                <mat-form-field appearance="outline" fxFlex="49%">
+                    <mat-label>Teléfono</mat-label>
+                    <input matInput placeholder="Teléfono" formControlName="phone">
+                    <mat-icon matSuffix>phone</mat-icon>
+                </mat-form-field>
+            </div>
+        </div>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close>Cancel</button>
+        <button mat-button type="submit" cdkFocusInitial color="primary">Guardar</button>
+    </mat-dialog-actions>
+</form>
