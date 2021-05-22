@@ -18,10 +18,10 @@ export class ChangePasswordComponent implements OnInit {
       contrasenaActual:['',[Validators.required,Validators.minLength(3)]],
       nuevaContrasena:['',[Validators.required,Validators.minLength(3)]],
       validacionContrasena:['',[Validators.required,Validators.minLength(3)]]
-    },{ validators: this.identityRevealedValidator });
+    },{ validators: this.validadorParContrasena });
   }
   
- identityRevealedValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
+ validadorParContrasena: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
   const validacionContrasena = control.get('validacionContrasena');
   const nuevaContrasena = control.get('nuevaContrasena');
 

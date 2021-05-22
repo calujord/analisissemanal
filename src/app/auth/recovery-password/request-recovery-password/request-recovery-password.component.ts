@@ -16,4 +16,7 @@ export class RequestRecoveryPasswordComponent implements OnInit {
       usuario:['',[Validators.required,Validators.email]],
     });
   }
+  onActualizarContrasenas(){
+    
+  }
 }
