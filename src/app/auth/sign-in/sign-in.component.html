@@ -1,27 +1,14 @@
 <div class="container">
   <div class="wizzard">
     <mat-horizontal-stepper [linear]="true" #stepper>
-      
-      
-      <mat-step [stepControl]="selectBusinessFromGroup" >
-        <ng-template matStepLabel>{{stepLabel1}}</ng-template>
+      <mat-step [stepControl]="fiscalFormGroup">
+        <ng-template matStepLabel>{{stepLabel2}}</ng-template>
         <div class="panelinterno">
           <mat-radio-group class="radio-group" aria-labelledby="seleccione tipo de cuenta" [(ngModel)]="business.person_type">
             <mat-radio-button class="radio-btn" selected value="B">Empresa</mat-radio-button>
             <mat-radio-button class="radio-btn" value="P">Persona</mat-radio-button>
           </mat-radio-group>
-          <button mat-raised-button matStepperNext color="primary">Continuar</button>
-        </div>          
-      </mat-step>
-
-
-
-
-      <mat-step [stepControl]="fiscalFormGroup">
-        <ng-template matStepLabel>{{stepLabel2}}</ng-template>
-        <div class="panelinterno">
-          <label *ngIf="business.person_type == 'B'">Información Fiscal de la Empresa</label>
-          <label *ngIf="business.person_type == 'P'">Información Personal</label>
+         
           <mat-form-field class="example-form-field">
             <mat-label *ngIf="business.person_type == 'B'">Ruc</mat-label>
             <mat-label *ngIf="business.person_type == 'P'">Cédula, Ruc o Pasaporte</mat-label>

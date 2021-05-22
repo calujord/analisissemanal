@@ -56,9 +56,9 @@ export class SignInComponent implements OnInit {
     this.homeService.getAreas().then((res) => this.areaList = res);
 
   }
-  stepLabel1='T de Empresa';
-  stepLabel2='Inf fiscal';
-  stepLabel3='Inf usuario';
+  
+  stepLabel2='Información fiscal';
+  stepLabel3='Información usuario';
 
   onSignIn() {
     /*
