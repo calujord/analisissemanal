@@ -1,102 +1,65 @@
-<mat-horizontal-stepper [linear]="true" #stepper>
-  <mat-step [stepControl]="selectBusinessFromGroup">
-    <ng-template matStepLabel>Tipo de empresa</ng-template>
+<div class="container">
+  <div class="wizzar">
+    <mat-horizontal-stepper linear #stepper>
+      <mat-step [stepControl]="fiscalFormGroup">
+        <form [formGroup]="fiscalFormGroup" class="panelinterno">
+          <ng-template matStepLabel>{{stepLabel2}}</ng-template>
+          <mat-radio-group class="radio-group" aria-labelledby="seleccione tipo de cuenta" formControlName="person_typefc">
+            <mat-radio-button class="radio-btn" selected value="B">Empresa</mat-radio-button>
+            <mat-radio-button class="radio-btn" value="P">Persona</mat-radio-button>
+          </mat-radio-group>
+          <mat-form-field>
+            <mat-label>Identificación</mat-label>
+            <input matInput type="text" formControlName="identificacionfc" placeholder="0992986100001">
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Razón Social</mat-label>
+            <input matInput type="text" formControlName="namefc" placeholder="Edgar Vivar">
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Seleccione Pais</mat-label>
+            <mat-select formControlName="countryfc">
+              <mat-option value={{c}} *ngFor="let c of countryList">{{c.name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Ciudad</mat-label>
+            <input matInput type="text" formControlName="cityfc">
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Telefono</mat-label>
+            <input matInput type="text" formControlName="phonefc">
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Dirección</mat-label>
+            <input matInput type="text" formControlName="addressfc">
+          </mat-form-field>
+          <div>
+            <button mat-raised-button color="primary" matStepperNext
+              [disabled]="!fiscalFormGroup.valid">Siguiente</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="userFormGroup">
+        <form [formGroup]="userFormGroup" class="panelinterno">
+          <ng-template matStepLabel>{{stepLabel3}}</ng-template>
+          <mat-form-field>
+            <mat-label>Correo Electrónico</mat-label>
+            <input matInput type="text" formControlName="correofc">
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Contraseña</mat-label>
+            <input matInput type="password" formControlName="contrasena">
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Repetir Contraseña</mat-label>
+            <input matInput type="password" formControlName="validarcontrasena">
+          </mat-form-field>
+        </form>
+        </mat-step>
 
-    <mat-radio-group class="radio-group" aria-labelledby="seleccione tipo de cuenta" [(ngModel)]="business.person_type">
-      <mat-radio-button class="radio-btn" selected value="B">Empresa</mat-radio-button>
-      <mat-radio-button class="radio-btn" value="P">Persona</mat-radio-button>
-    </mat-radio-group>
-
-    <button mat-button matStepperNext>Continuar</button>
-  </mat-step>
-  <mat-step [stepControl]="fiscalFormGroup">
-    <ng-template matStepLabel>Información fiscal</ng-template>
-    <label *ngIf="business.person_type == 'B'">Información Fiscal de la Empresa</label>
-    <label *ngIf="business.person_type == 'P'">Información Personal</label>
-    <p></p>
-    <mat-form-field class="example-form-field">
-      <mat-label *ngIf="business.person_type == 'B'">Ruc</mat-label>
-      <mat-label *ngIf="business.person_type == 'P'">Cédula, Ruc o Pasaporte</mat-label>
-      <input matInput type="text" [(ngModel)]="business.identification">
-      <button mat-button *ngIf="business.identification" matSuffix mat-icon-button aria-label="Clear"
-        (click)="business.identification=''">
-        <mat-icon>close</mat-icon>
-      </button>
-    </mat-form-field>
-    <p></p>
-    <mat-form-field class="example-form-field">
-      <mat-label *ngIf="business.person_type == 'B'">Razón Social</mat-label>
-      <mat-label *ngIf="business.person_type == 'P'">Nombres</mat-label>
-      <input matInput type="text" [(ngModel)]="business.name">
-      <button mat-button *ngIf="business.identification" matSuffix mat-icon-button aria-label="Clear"
-        (click)="business.name=''">
-        <mat-icon>close</mat-icon>
-      </button>
-    </mat-form-field>
-    <p></p>
-    <mat-form-field appearance="fill">
-      <mat-label>Seleccione Pais</mat-label>
-      <mat-select [(value)]="business.country">
-        <mat-option value="{{c}}" *ngFor="let c of countryList">{{c.name}}</mat-option>
-        <mat-option value="option2">Option 2</mat-option>
-        <mat-option value="option3">Option 3</mat-option>
-      </mat-select>
-    </mat-form-field>
-    <p></p>
-    <mat-form-field class="example-form-field">
-      <mat-label>Ciudad</mat-label>
-      <input matInput type="text" [(ngModel)]="business.city">
-      <button mat-button *ngIf="business.city" matSuffix mat-icon-button aria-label="Clear" (click)="business.city=''">
-        <mat-icon>close</mat-icon>
-      </button>
-    </mat-form-field>
-    <p></p>
-    <mat-form-field class="example-form-field">
-      <mat-label>Teléfono</mat-label>
-      <input matInput type="text" [(ngModel)]="business.phone">
-      <button mat-button *ngIf="business.phone" matSuffix mat-icon-button aria-label="Clear"
-        (click)="business.phone=''">
-        <mat-icon>close</mat-icon>
-      </button>
-    </mat-form-field>
-    <p></p>
-    <mat-form-field class="example-form-field">
-      <mat-label>Dirección</mat-label>
-      <input matInput type="text" [(ngModel)]="business.address">
-      <button mat-button *ngIf="business.address" matSuffix mat-icon-button aria-label="Clear"
-        (click)="business.address=''">
-        <mat-icon>close</mat-icon>
-      </button>
-    </mat-form-field>
-  </mat-step>
-
-  <mat-step [stepControl]="userFormGroup">
-    <ng-template matStepLabel>Información de usuario</ng-template>
-    <mat-form-field class="example-form-field">
-      <mat-label>Correo Electrónico</mat-label>
-      <input matInput type="text">
-
-    </mat-form-field>
-    <p></p>
-    <mat-form-field class="example-form-field">
-      <mat-label>Contraseña</mat-label>
-      <input matInput [type]="hide_pass1 ? 'password' : 'text'">
-      <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="hide_pass1 = !hide_pass1">
-        <mat-icon>{{hide_pass1 ? 'visibility_off' : 'visibility'}}</mat-icon>
-      </button>
-    </mat-form-field>
-    <p></p>
-    <mat-form-field class="example-form-field">
-      <mat-label>Repetir Contraseña</mat-label>
-      <input matInput [type]="hide_pass2 ? 'password' : 'text'">
-      <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="hide_pass2 = !hide_pass1">
-        <mat-icon>{{hide_pass2 ? 'visibility_off' : 'visibility'}}</mat-icon>
-      </button>
-    </mat-form-field>
-    <p>
-      <mat-checkbox>Acepto los Términos y Condiciones</mat-checkbox>
-    </p>
-  </mat-step>
-</mat-horizontal-stepper>
-
-<button mat-raised-button color="primary">Crear Cuenta</button>
+    </mat-horizontal-stepper>
+  </div>
+  <mat-checkbox *ngIf="userFormGroup.valid && fiscalFormGroup.valid">Acepto los Términos y Condiciones</mat-checkbox>
+  <button mat-raised-button color="primary" *ngIf="userFormGroup.valid && fiscalFormGroup.valid">Crear Cuenta</button>
+</div>

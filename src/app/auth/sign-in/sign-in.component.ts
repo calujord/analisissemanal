@@ -1,6 +1,6 @@
 import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LayoutService } from 'src/app/layout.service';
 import { BusinessCreateAccount } from 'src/app/models/business/business-create-account';
@@ -14,11 +14,12 @@ import { AuthComponentService } from '../AuthComponentService';
 @Component({
   selector: 'app-sign-in',
   templateUrl: './sign-in.component.html',
-  styleUrls: ['./sign-in.component.sass']
+  styleUrls: ['./sign-in.component.css']
 })
 export class SignInComponent implements OnInit {
-  hide_pass1: Boolean = true;
+  /* hide_pass1: Boolean = true;
   hide_pass2: Boolean = true;
+  formgroup: FormGroup;
   selectBusinessFromGroup!: FormGroup;
   fiscalFormGroup!: FormGroup;
   countryList: Country[] = [];
@@ -37,23 +38,43 @@ export class SignInComponent implements OnInit {
     type_payment: null,
     person_type: 'B',
     avatar: null,
-  }
-
+  } */
+  fiscalFormGroup:FormGroup
+  userFormGroup:FormGroup
+  stepLabel2='Información fiscal';
+  stepLabel3='Información usuario';
+  countryList: Country[] = [];
   constructor(
     private authService: UserService,
     private homeService: HomeService,
     private stService: StorageService,
     private router: Router,
-    fb: FormBuilder,
-
+    private fb: FormBuilder,
     private layoutSevice: LayoutService
   ) { }
 
   ngOnInit(): void {
-    this.layoutSevice.hideSideBar();
-    this.layoutSevice.hideNavBar();
+
+   // this.layoutSevice.hideSideBar();
+   // this.layoutSevice.hideNavBar();
     this.homeService.getCountries().then((res) => this.countryList = res);
-    this.homeService.getAreas().then((res) => this.areaList = res);
+  //  this.homeService.getAreas().then((res) => this.areaList = res);
+  this.fiscalFormGroup=this.fb.group({
+    identificacionfc:['',[Validators.required,Validators.minLength(6)]],
+    namefc:['',[Validators.required,Validators.minLength(2)]],
+    countryfc:['',[Validators.required]],
+    cityfc:['',[Validators.required]],
+    phonefc:['',[Validators.required,Validators.minLength(6)]],
+    addressfc:['',[Validators.required]],
+    person_typefc:['B',[Validators.required]]
+  });
+
+  this.userFormGroup=this.fb.group({
+    correofc:['',[Validators.required,Validators.email]],
+    contrasena:['',[Validators.required,Validators.minLength(4)]],
+    validarcontrasena:['',[Validators.required]] 
+  },{ validators: this.validadorParContrasena });
+
 
   }
 
@@ -65,5 +86,10 @@ export class SignInComponent implements OnInit {
     });
     */
   }
+  validadorParContrasena: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
+    const validacionContrasena = control.get('validarcontrasena');
+    const nuevaContrasena = control.get('contrasena');
+    return validacionContrasena.value != nuevaContrasena.value ? { coincidencia: true } : null;
+  };
 
 }

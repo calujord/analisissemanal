@@ -1,0 +1,33 @@
+.container{
+  display: flex;
+  width: 100vw;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+ .wizzard{
+   max-width: 330px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+ }
+
+ .panelinterno{
+   max-width: 300px;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+ }
+.radio-group{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 15px 0;
+} 
+  
+
+
+.radio-btn{
+margin: 5px;
+}
+  
