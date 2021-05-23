@@ -10,9 +10,7 @@ import { AuthComponentService } from '../AuthComponentService';
 })
 export class AuthenticationComponent implements OnInit {
 
-  constructor(
-    public authCompService: AuthComponentService
-  ) {
+  constructor(public authCompService: AuthComponentService) {
 
   }
 
