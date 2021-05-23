@@ -1,5 +1,6 @@
 import { areAllEquivalent } from "@angular/compiler/src/output/output_ast";
 import { Injectable } from "@angular/core";
+import { BusinessAuthentication } from "src/app/models/business/business-authentication";
 import { BusinessModel, BusinessSubscriptionAddress, BusinessSubscriptionAddressList } from "src/app/models/business/business.models";
 import { RateModel } from "src/app/models/rates/rates";
 import { Area, Country } from "src/app/models/utils";
@@ -9,7 +10,7 @@ import { AppConnect } from "src/app/utils/Connection";
     providedIn: 'root'
 })
 export class BusinessService {
-    private token: string;
+    private session: BusinessAuthentication;
     constructor(private connect: AppConnect) {
     }
     /**
@@ -18,7 +19,7 @@ export class BusinessService {
      */
     saveFiscalInformation(business: BusinessModel): Promise<BusinessModel> {
         this.connect.endPoint = "/business/update/";
-        this.connect.token = this.token;
+        this.connect.session = this.session;
         return this.connect.httpPost({
             "person_type": business.person_type,
             "business_name": business.name,
@@ -30,17 +31,19 @@ export class BusinessService {
             "address": business.address,
         }).then((e) => e);
     }
-    setToken(token) {
-        this.token = token;
+    setSession(session) {
+        this.session = session;
     }
     getListAdressSubscription(): Promise<BusinessSubscriptionAddressList> {
         this.connect.endPoint = "/business/subscription/address/";
-        this.connect.token = this.token;
+
+        this.connect.session = this.session;
         return this.connect.httpGet().then((e) => e);
     }
     updateAddress(bsa: BusinessSubscriptionAddress) {
         this.connect.endPoint = "/business/subscription/address/update/";
-        this.connect.token = this.token;
+
+        this.connect.session = this.session;
         return this.connect.httpPost({
             "bsl": [bsa]
         })

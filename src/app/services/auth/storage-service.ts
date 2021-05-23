@@ -30,7 +30,7 @@ export class StorageService {
         }
     }
 
-    getCurrentSession(): any {
+    getCurrentSession(): BusinessAuthentication {
         return this.businessAuthentication != null ? this.businessAuthentication : null;
     }
 

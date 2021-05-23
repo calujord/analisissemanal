@@ -1,5 +1,6 @@
 import { Injectable, Provider } from "@angular/core";
 import { AppConnect } from "src/app/utils/Connection";
+import { BusinessAuthentication } from "../business/business-authentication";
 import { CardModel } from "../rates/rates";
 
 @Injectable({
@@ -15,8 +16,8 @@ export class CreditcardService {
         });
     }
 
-    setToken(token: string) {
-        this.connect.token = token;
+    setToken(session: BusinessAuthentication) {
+        this.connect.session = session;
     }
     /**
      * 

@@ -62,7 +62,7 @@ export class ProfileComponent implements OnInit {
       phone: this.businessProfileForm.get("phone").value,
 
     };
-    this.businessService.setToken(this.storageService.getCurrentToken());
+    this.businessService.setSession(this.storageService.getCurrentSession());
     this.businessService.saveFiscalInformation(business).then((business) => {
       this.storageService.setBusiness(business);
     });

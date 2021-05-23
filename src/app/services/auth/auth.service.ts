@@ -51,7 +51,8 @@ export class UserService {
 
     }
     /**
-     * 
+     * 1. Solicitud de recuperación de contraseña
+     * 2. Recibirás un código de 4 digitos en el correo
      * @param email 
      * @returns 
      */
@@ -63,6 +64,9 @@ export class UserService {
 
     }
     /**
+     * 
+     * Validarás el código que te enviaron por correo 
+     * y retornará un hash que permitirá cambiar la contraseña
      * 
      * @param email 
      * @param code 
@@ -78,7 +82,7 @@ export class UserService {
     /**
      * 
      * @param password 
-     * @param token 
+     * @param token // hash
      * @returns true|false 
      * 
      */

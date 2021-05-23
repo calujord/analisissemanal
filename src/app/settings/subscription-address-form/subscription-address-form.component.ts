@@ -35,7 +35,7 @@ export class SubscriptionAddressFormComponent implements OnInit {
     this.data.full_address = this.businessProfileForm.get("full_address").value;
     this.data.phone = this.businessProfileForm.get("phone").value;
     this.data.city = this.businessProfileForm.get("city").value;
-    this.businessService.setToken(this.storage.getCurrentToken());
+    this.businessService.setSession(this.storage.getCurrentSession());
     this.businessService.updateAddress(this.data).then((res) => {
       this.dialogRef.close();
     });

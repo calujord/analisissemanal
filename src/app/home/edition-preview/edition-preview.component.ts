@@ -20,12 +20,12 @@ export class EditionPreviewComponent implements OnInit {
     private editionService: EditionService,
     private stStorage: StorageService,
   ) {
-    this.editionService.setToken(stStorage.getCurrentToken());
+    this.editionService.setSession(stStorage.getCurrentSession());
     this.editionService.getEdition(data).then((res) => this.editionRead = res);
   }
   reload() {
 
-    this.editionService.setToken(this.stStorage.getCurrentToken());
+    this.editionService.setSession(this.stStorage.getCurrentSession());
     this.editionService.getEdition(this.data).then((res) => this.editionRead = res);
   }
   canReadEdition(): boolean {

@@ -1,5 +1,6 @@
 import { areAllEquivalent } from "@angular/compiler/src/output/output_ast";
 import { Injectable } from "@angular/core";
+import { BusinessAuthentication } from "src/app/models/business/business-authentication";
 import { Edition, EditionRead, HomeModel } from "src/app/models/home/home.model";
 import { CardModel, RateModel } from "src/app/models/rates/rates";
 import { BusinessSubscriptionPurchase } from "src/app/models/transaction/business_transaction";
@@ -20,8 +21,8 @@ export class EditionService {
         this.connect.endPoint = `/articles/read/${edition.pk}`;
         return this.connect.httpGet();
     }
-    setToken(token: string) {
-        this.connect.token = token;
+    setSession(ba: BusinessAuthentication) {
+        this.connect.session = ba;
     }
 
     subscribeAS(rate: RateModel, card: CardModel, quantityPhEn: number, quantityPhEs: number, quantityDEn: number, quantityDEs: number): Promise<BusinessSubscriptionPurchase> {

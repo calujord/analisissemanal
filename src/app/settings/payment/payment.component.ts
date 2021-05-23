@@ -16,7 +16,7 @@ export class PaymentComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.balanceService.setToken(this.storage.getCurrentToken());
+    this.balanceService.setSession(this.storage.getCurrentSession());
     this.balanceService.getBalanceList().then((res) => { this.balanceList = res })
   }
   displayedColumns: string[] = ['date_created', 'billing_number', 'url_invoice'];

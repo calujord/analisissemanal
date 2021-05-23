@@ -19,7 +19,7 @@ export class SubscriptionComponent implements OnInit {
   ) { }
   displayedColumns: string[] = ['name', 'full_address', 'phone', 'city', 'action'];
   ngOnInit(): void {
-    this.businessService.setToken(this.storageService.getCurrentToken());
+    this.businessService.setSession(this.storageService.getCurrentSession());
     this.businessService.getListAdressSubscription().then((res) => {
       this.bsal = res;
     });
