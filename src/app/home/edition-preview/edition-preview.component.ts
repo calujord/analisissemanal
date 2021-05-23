@@ -34,6 +34,9 @@ export class EditionPreviewComponent implements OnInit {
   ngOnInit(): void {
 
   }
+  isAuthenticated(): boolean {
+    return this.stStorage.isAuthenticated();
+  }
   showSuscription() {
     this.createNewSubscription = true;
   }

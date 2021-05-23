@@ -7,7 +7,6 @@ import { CardlistComponent } from './cardlist/cardlist.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -18,7 +17,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
-
 
 
 @NgModule({
@@ -40,8 +38,7 @@ import { MatInputModule } from '@angular/material/input';
     ReactiveFormsModule,
     FlexLayoutModule,
     MatProgressSpinnerModule,
-    BrowserModule,
-    BrowserAnimationsModule,
+    // BrowserAnimationsModule,
     HttpClientModule,
     MatToolbarModule,
     FormsModule,

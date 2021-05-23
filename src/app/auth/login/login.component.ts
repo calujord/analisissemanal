@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
       chkremember: new FormControl('')
     })
     if (this.stService.getCurrentSession() != null) {
-      this.router.navigate(['/home']).then();
+      this.router.navigate(['/']).then();
     }
 
 
@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
       this.userService.onLogin(this.formGroup!.get("username")?.value, this.formGroup!.get("password")?.value).then((res) => {
         this.stService.setCurrentSession(res);
         this.layoutSevice.login();
-        this.router.navigate(['/home']).then();
+        this.router.navigate(['/']).then();
       }).catch((res) => {
 
       });

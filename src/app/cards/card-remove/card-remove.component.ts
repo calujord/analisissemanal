@@ -22,7 +22,7 @@ export class CardRemoveComponent implements OnInit {
   }
 
   onDelete() {
-    this.cardService.setToken(this.storage.getCurrentToken())
+    this.cardService.setSession(this.storage.getCurrentSession()!);
     this.cardService.removeCard(this.card).then((res) => {
       this.dialogRef.close(this.card);
     });

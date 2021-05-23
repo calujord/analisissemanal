@@ -49,3 +49,27 @@ export interface Edition {
     price: number;
     cover: string;
 }
+export interface CategoryList {
+    object_list: CategoryModel[];
+    number: number;
+    page_size: number;
+    count: number;
+    total: number;
+    num_pages: number;
+}
+
+export interface CategoryModel {
+    pk: number;
+    name: string;
+    language: Language;
+}
+
+export interface EditionList {
+    edition: Edition[];
+    number: number;
+    page_size: number;
+    count: number;
+    total: number;
+    num_pages: number;
+}
+

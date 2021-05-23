@@ -7,7 +7,7 @@ import { SubscriptionComponent } from './profile/subscription/subscription.compo
 import { DevicesComponent } from '../configuration_app/devices/devices.component';
 import { FiscalInformationComponent } from '../configuration_app/fiscal-information/fiscal-information.component';
 import { PaymentComponent } from './profile/payment/payment.component';
-import { HeaderComponent } from './header/header.component';
+import { HeaderComponent } from '../ui/header/header.component';
 import { MatIcon, MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
@@ -35,10 +35,11 @@ import { ConfigurationComponent } from '../configuration_app/configuration/confi
 import { SpinnersAngularModule } from 'spinners-angular';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { EditionCardItemComponent } from '../edition-card-item/edition-card-item.component';
 import { CreateSubscriptionComponent } from './create-subscription/create-subscription.component';
 import { AddItemCartComponent } from './add-item-cart/add-item-cart.component';
 import { AlertMessageComponent } from '../alert-message/alert-message.component';
+import { AppRoutingModule } from '../app-routing.module';
+import { UiModule } from '../ui/ui.module';
 
 
 
@@ -55,14 +56,14 @@ import { AlertMessageComponent } from '../alert-message/alert-message.component'
     EditionPreviewComponent,
     SubscribeComponent,
     ConfigurationComponent,
-    EditionCardItemComponent,
     CreateSubscriptionComponent,
     AddItemCartComponent,
     AlertMessageComponent
 
 
   ],
-  entryComponents: [EditionPreviewComponent, CreateSubscriptionComponent],
+  entryComponents: [EditionPreviewComponent, CreateSubscriptionComponent,
+  ],
   exports: [
     MatRippleModule,
     MatButtonModule,
@@ -95,6 +96,7 @@ import { AlertMessageComponent } from '../alert-message/alert-message.component'
     MatSelectModule,
 
 
+    UiModule,
   ]
 })
 export class HomeModule { }

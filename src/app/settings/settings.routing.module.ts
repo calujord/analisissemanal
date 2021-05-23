@@ -8,9 +8,6 @@ import { SettingsManageComponent } from './settings-manage/settings-manage.compo
 import { SubscriptionComponent } from './subscription/subscription.component';
 
 const SettingsRouting: Routes = [
-    // { path: 'fiscal-information', component: ProfileComponent, outlet: 'settings' },
-    // { path: 'subscriptions', component: ProfileComponent, outlet: 'settings' },
-
     {
         path: '', component: SettingsManageComponent,
         children: [

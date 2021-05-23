@@ -29,7 +29,6 @@ export class StorageService {
             return JSON.parse(this.localStorageService.getItem('currentBusiness') as string);
         }
     }
-
     getCurrentSession(): BusinessAuthentication {
         return this.businessAuthentication != null ? this.businessAuthentication : null;
     }
@@ -40,7 +39,7 @@ export class StorageService {
     }
 
     isAuthenticated(): boolean {
-        return (this.getCurrentToken() != null) ? true : false;
+        return (this.getCurrentSession() != null) ? true : false;
     };
 
     getCurrentToken(): any {

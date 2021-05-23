@@ -1,0 +1,40 @@
+<mat-toolbar position-fixed class="app-toolbar">
+  <span>Análisis semanal</span>
+  <span class="example-spacer"></span>
+  <button mat-button aria-label="Example icon-button with heart icon" [routerLink]="['/']">
+    <mat-icon>home</mat-icon> Inicio
+  </button>
+  <button mat-button aria-label="Example icon-button with heart icon" [routerLink]="['/discovery']">
+    <mat-icon>explore</mat-icon> Descubrir
+  </button>
+  <button mat-button aria-label="Example icon-button with heart icon" [routerLink]="['/login']"
+    *ngIf="!this.isAuthenticated()">
+    <mat-icon>account_circle</mat-icon>
+    Iniciar sesión
+  </button>
+  <button mat-button [matMenuTriggerFor]="menu" *ngIf="this.isAuthenticated()">
+    <mat-icon>account_circle</mat-icon>
+    {{getUserName()}}
+  </button>
+  <mat-menu #menu="matMenu" xPosition="before">
+    <button mat-menu-item [routerLink]="['/settings/fiscal-information']">
+      <mat-icon>business</mat-icon>
+      Información fiscal
+    </button>
+    <button mat-menu-item [routerLink]="['/settings/subscription']">
+      <mat-icon>card_membership</mat-icon>
+      Suscripciones
+    </button>
+    <button mat-menu-item [routerLink]="['/settings/devices']">
+      <mat-icon>devices</mat-icon> Dispositivos
+    </button>
+    <button mat-menu-item [routerLink]="['/settings/creditcard']">
+      <mat-icon>credit_card</mat-icon>
+      Tarjeta de crédito
+    </button>
+    <button (click)="logout()" mat-menu-item>
+      <mat-icon>logout</mat-icon>
+      Cerrar sesión
+    </button>
+  </mat-menu>
+</mat-toolbar>

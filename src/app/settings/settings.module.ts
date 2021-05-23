@@ -21,6 +21,7 @@ import { MatTableModule } from '@angular/material/table';
 import { SubscriptionAddressFormComponent } from './subscription-address-form/subscription-address-form.component';
 import { MatDialogActions, MatDialogModule } from '@angular/material/dialog';
 import { CardsModule } from '../cards/cards.module';
+import { UiModule } from '../ui/ui.module';
 
 
 
@@ -51,6 +52,7 @@ import { CardsModule } from '../cards/cards.module';
     ReactiveFormsModule,
     MatTableModule,
     MatDialogModule,
+    UiModule,
 
 
   ],

@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -8,8 +7,6 @@ import { AuthModule } from './auth/auth.module';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeModule } from './home/home.module';
-import { MatDialogModule } from '@angular/material/dialog';
-import { HeaderComponent } from './home/header/header.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -22,20 +19,25 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
 import { SettingsModule } from './settings/settings.module';
 import { CardsModule } from './cards/cards.module';
+import { FrontendModule } from './frontend/frontend.module';
+import { CommonModule } from '@angular/common';
+import { BrowserModule } from '@angular/platform-browser';
+import { HeaderComponent } from './ui/header/header.component';
+import { DiscoveryModule } from './discovery/discovery.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
   ],
   exports: [
   ],
   imports: [
-    FlexLayoutModule,
-    MatProgressSpinnerModule,
-    BrowserModule,
+    CommonModule,
+
     AppRoutingModule,
     BrowserAnimationsModule,
+    FlexLayoutModule,
+    MatProgressSpinnerModule,
     HttpClientModule,
     MatToolbarModule,
     FormsModule,
@@ -48,8 +50,10 @@ import { CardsModule } from './cards/cards.module';
     MatSelectModule,
     CardsModule,
     SettingsModule,
-    AuthModule,
+    FrontendModule,
     HomeModule,
+    AuthModule,
+    DiscoveryModule,
 
 
 

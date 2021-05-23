@@ -27,7 +27,7 @@ export class CardlistComponent implements OnInit {
   }
   getCards() {
 
-    this.creditCardService.setToken(this.stStorage.getCurrentToken()!);
+    this.creditCardService.setSession(this.stStorage.getCurrentSession()!);
     this.creditCardService.getCards().then((res) => this.dataSource = res);
   }
   removeCard(card: CardModel) {

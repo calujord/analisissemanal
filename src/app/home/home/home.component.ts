@@ -8,7 +8,6 @@ import { Area, Country } from 'src/app/models/utils';
 import { StorageService } from 'src/app/services/auth/storage-service';
 import { HomeService } from 'src/app/services/home/home.service';
 import { UtilService } from 'src/app/services/utils/utils.service';
-import { HomeModule } from '../home.module';
 
 @Component({
   selector: 'app-home',

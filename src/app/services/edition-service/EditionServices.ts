@@ -1,7 +1,8 @@
+import { HttpParams } from "@angular/common/http";
 import { areAllEquivalent } from "@angular/compiler/src/output/output_ast";
 import { Injectable } from "@angular/core";
 import { BusinessAuthentication } from "src/app/models/business/business-authentication";
-import { Edition, EditionRead, HomeModel } from "src/app/models/home/home.model";
+import { CategoryList, Edition, EditionList, EditionRead, HomeModel } from "src/app/models/home/home.model";
 import { CardModel, RateModel } from "src/app/models/rates/rates";
 import { BusinessSubscriptionPurchase } from "src/app/models/transaction/business_transaction";
 import { Area, Country } from "src/app/models/utils";
@@ -23,6 +24,20 @@ export class EditionService {
     }
     setSession(ba: BusinessAuthentication) {
         this.connect.session = ba;
+    }
+    getCategories(): Promise<CategoryList> {
+        this.connect.endPoint = "/articles/categories/";
+        return this.connect.httpGet();
+    }
+
+    search(page: string, query: string, category: number, date_range: string): Promise<EditionList> { // 
+        let par = new HttpParams()
+            .set("q", query)
+            .set("category", category != null ? `${category}` : "")
+            .set("publication_date", date_range != null ? `${date_range}` : "");
+        this.connect.endPoint = `/articles/search/?${par.toString()}`;
+        return this.connect.httpGet();
+
     }
 
     subscribeAS(rate: RateModel, card: CardModel, quantityPhEn: number, quantityPhEs: number, quantityDEn: number, quantityDEs: number): Promise<BusinessSubscriptionPurchase> {

@@ -21,12 +21,11 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
   }
   getUserName() {
-    if (this.stService.getCurrentSession() != null)
-      return this.stService.getCurrentSession().business.name;
-    else
-      return "";
+    return this.stService.getCurrentSession().business.name;
   }
-
+  isAuthenticated(): boolean {
+    return this.stService.isAuthenticated();
+  }
   logout() {
     this.stService.logout();
     this.route.navigate(["/"]).then();

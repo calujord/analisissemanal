@@ -24,6 +24,8 @@
     "@angular/router": "~11.2.3",
     "@ngmodule/material-carousel": "^0.6.0",
     "hammerjs": "^2.0.8",
+    "mat-daterangepicker": "^1.0.1",
+    "moment": "^2.29.1",
     "ng2-pdf-viewer": "^6.4.1",
     "rxjs": "~6.6.0",
     "spinners-angular": "0.0.4",

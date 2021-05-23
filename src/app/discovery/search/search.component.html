@@ -1,1 +1,63 @@
-<p>search works!</p>
+<app-header></app-header>
+<div class="container">
+    <mat-card>
+        <form [formGroup]="formGroup" (ngSubmit)="searchEditions()">
+            <h1>Buscar ediciones</h1>
+            <div fxLayout="row" fxLayoutGap="12px">
+                <div fxFlex="20%">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Tema</mat-label>
+                        <mat-select formControlName="category">
+                            <mat-option [value]="c.pk" *ngFor="let c of categoryList">{{c.name}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div fxFlex="20%">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Seleccione rangos de fechas</mat-label>
+                        <mat-date-range-input [formGroup]="formGroup" [rangePicker]="picker">
+                            <input matStartDate formControlName="start" placeholder="Fecha inicial">
+                            <input matEndDate formControlName="end" placeholder="Fecha final">
+                        </mat-date-range-input>
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-date-range-picker #picker></mat-date-range-picker>
+
+                        <mat-error *ngIf="formGroup.controls.start.hasError('matStartDateInvalid')">Invalid start date
+                        </mat-error>
+                        <mat-error *ngIf="formGroup.controls.end.hasError('matEndDateInvalid')">Invalid end date
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div fxFlex="60%">
+                    <div fxLayout="row">
+                        <mat-form-field appearance="outline" fxFlex="calc(100% - 40px)">
+                            <mat-label>Buscador</mat-label>
+                            <input matInput placeholder="¿Qué estás buscando?" formControlName="query">
+                            <!-- <mat-icon matSuffix>account_circle</mat-icon> -->
+                        </mat-form-field>
+
+                        <div fxFlex="40px">
+
+                            <button type="submit" style="margin-top: 10px;" mat-icon-button
+                                aria-label="Example icon button with a vertical three dot icon">
+                                <mat-icon>search</mat-icon>
+                            </button>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </form>
+    </mat-card>
+
+    <div class="results" *ngIf="edList!=null" fxLayout="row">
+        <div *ngFor="let item of edList.edition" fxFlex="33%" style="margin-left: 5px; margin-right: 5px">
+            <app-edition-card-item [edition]="item" [style.padding-top.px]="20"></app-edition-card-item>
+
+        </div>
+        <div *ngIf="edList.edition.length==0">
+            <p>No existen datos con este criterio de búsqueda</p>
+        </div>
+    </div>
+</div>

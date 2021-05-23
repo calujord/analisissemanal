@@ -16,7 +16,7 @@ export class CreditcardService {
         });
     }
 
-    setToken(session: BusinessAuthentication) {
+    setSession(session: BusinessAuthentication) {
         this.connect.session = session;
     }
     /**
