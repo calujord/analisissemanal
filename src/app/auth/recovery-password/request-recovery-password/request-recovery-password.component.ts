@@ -4,6 +4,8 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, AsyncValidatorFn, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { from, Observable } from 'rxjs';
 import { UserService } from 'src/app/services/auth/auth.service';
+import {MatDialog} from '@angular/material/dialog';
+
 
 @Component({
   selector: 'app-request-recovery-password',
@@ -12,7 +14,7 @@ import { UserService } from 'src/app/services/auth/auth.service';
 })
 export class RequestRecoveryPasswordComponent implements OnInit {
 
-  constructor(private fb: FormBuilder, private authservice: UserService) { }
+  constructor(private fb: FormBuilder, private authservice: UserService, private dialogo: MatDialog) { }
   formGroup!: FormGroup;
   onActualizarContrasenas(): void{
 
@@ -33,9 +35,15 @@ export class RequestRecoveryPasswordComponent implements OnInit {
   validadorCorreoAsyn(): AsyncValidatorFn {
     console.log('validador');
     return (usuario: AbstractControl) => {
-      return this.authservice.onRequestPassword(usuario.value).then((res) => {
-        return null;
+      return this.authservice.onRequestPassword(usuario.value).then((res: {success: boolean }) => {
+        if (res.success){
+          return null;
+        }else{
+          return { inexistente: true };
+        }
+
       }).catch((err) => {
+        console.log(err);
         return { inexistente: true };
       });
     };
