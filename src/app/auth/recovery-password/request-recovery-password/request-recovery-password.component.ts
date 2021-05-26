@@ -4,6 +4,9 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, AsyncValidatorFn, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { from, Observable } from 'rxjs';
 import { UserService } from 'src/app/services/auth/auth.service';
+import { MatDialog } from '@angular/material/dialog';
+import { AlertMessageComponent } from 'src/app/alert-message/alert-message.component';
+
 
 @Component({
   selector: 'app-request-recovery-password',
@@ -12,7 +15,7 @@ import { UserService } from 'src/app/services/auth/auth.service';
 })
 export class RequestRecoveryPasswordComponent implements OnInit {
 
-  constructor(private fb: FormBuilder, private authservice: UserService) { }
+  constructor(private fb: FormBuilder, private authservice: UserService, private dialog: MatDialog) { }
   formGroup!: FormGroup;
   formChangePasswordGroup!: FormGroup;
   username: string = "";
@@ -34,7 +37,12 @@ export class RequestRecoveryPasswordComponent implements OnInit {
       console.log("pincode");
       this.panel = "PINCODE";
     }).catch((err) => {
-      // show errors
+      //TODO: CÓDIGO DE 4 DIGITOS INVALIDO
+
+      let dialogRef = this.dialog.open(AlertMessageComponent, {
+        width: '280px',
+        data: { message: "Código de 4 dígitos incorrecto", title: "Error" }
+      });
       console.log(`${err}`);
     });
 
@@ -60,6 +68,12 @@ export class RequestRecoveryPasswordComponent implements OnInit {
       console.log(this.tokenPassword);
       this.panel = "PASSWORD";
     }).catch((err) => {
+      //TODO: SU CÓDIGO HA EXPIRADO
+
+      let dialogRef = this.dialog.open(AlertMessageComponent, {
+        width: '280px',
+        data: { message: "Código de 4 dígitos ha expirado", title: "Error" }
+      });
 
     });
   }
@@ -68,10 +82,21 @@ export class RequestRecoveryPasswordComponent implements OnInit {
 
     this.authservice.onChangePassword(this.formChangePasswordGroup.get("nuevoContrasena").value, this.tokenPassword).then((res) => {
       // modal contraseña actualizada
-      console.log("password cahnged");
+      //TODO: Felicidades, ha podido cambiar su contraseña
+
+
+      let dialogRef = this.dialog.open(AlertMessageComponent, {
+        width: '280px',
+        data: { message: "Felicidades su contraseña ha sido modificada con éxito", title: "Cambio de contraseña" }
+      });
       this.onCleanAll();
     }).catch((err) => {
-      // error de contraseña
+      //TODO: CONTRASEÑA INVALIDA
+
+      let dialogRef = this.dialog.open(AlertMessageComponent, {
+        width: '280px',
+        data: { message: "Contraseña inválida", title: "Error" }
+      });
     });
 
   }
@@ -80,6 +105,6 @@ export class RequestRecoveryPasswordComponent implements OnInit {
     this.panel = "EMAIL";
     this.formGroup.reset();
     this.formChangePasswordGroup.reset();
-
   }
+
 }

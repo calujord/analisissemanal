@@ -10,6 +10,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatCarouselModule } from '@ngmodule/material-carousel';
 import { AppRoutingModule } from '../app-routing.module';
 import { RouterModule } from '@angular/router';
+import { DialogoerrorComponent } from './dialogoerror/dialogoerror.component';
+import {MatDialogModule} from "@angular/material/dialog";
 
 
 
@@ -17,17 +19,19 @@ import { RouterModule } from '@angular/router';
   declarations: [
     HeaderComponent,
     BannerComponent,
+    DialogoerrorComponent,
   ],
-  imports: [
-    CommonModule,
-    MatIconModule,
-    MatButtonModule,
-    MatMenuModule,
-    MatToolbarModule,
-    MatCardModule,
-    MatCarouselModule,
-    RouterModule,
-  ],
+    imports: [
+        CommonModule,
+        MatIconModule,
+        MatButtonModule,
+        MatMenuModule,
+        MatToolbarModule,
+        MatCardModule,
+        MatCarouselModule,
+        RouterModule,
+        MatDialogModule,
+    ],
   exports: [HeaderComponent, BannerComponent]
 })
 export class UiModule { }

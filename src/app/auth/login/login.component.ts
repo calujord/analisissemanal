@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { groupBy } from 'rxjs/internal/operators/groupBy';
+import { AlertMessageComponent } from 'src/app/alert-message/alert-message.component';
 import { LayoutService } from 'src/app/layout.service';
 import { BusinessAuthentication } from 'src/app/models/business/business-authentication';
 import { UserService } from 'src/app/services/auth/auth.service';
@@ -22,7 +24,8 @@ export class LoginComponent implements OnInit {
     fb: FormBuilder,
     private stService: StorageService,
     public router: Router,
-    private layoutSevice: LayoutService
+    private layoutSevice: LayoutService,
+    private dialog: MatDialog,
   ) {
   }
   ngOnInit(): void {
@@ -47,11 +50,18 @@ export class LoginComponent implements OnInit {
         this.layoutSevice.login();
         this.router.navigate(['/']).then();
       }).catch((res) => {
+        let dialogRef = this.dialog.open(AlertMessageComponent, {
+          width: '280px',
+          data: { message: "Usuario o contraseña incorrecta", title: "Error" }
+        });
 
       });
     }
     else {
-      alert("Error ");
+      let dialogRef = this.dialog.open(AlertMessageComponent, {
+        width: '280px',
+        data: { message: "Formulario inválido", title: "Error" }
+      });
     }
 
   }
