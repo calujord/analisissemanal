@@ -14,31 +14,31 @@ export class RequestRecoveryPasswordComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private authservice: UserService) { }
   formGroup!: FormGroup;
+  onActualizarContrasenas(): void{
 
+  }
   ngOnInit(): void {
     this.formGroup = this.fb.group({
       usuario: ['', {
-        validators: [Validators.required, Validators.email],
-        asyncvalidators: [this.validadorCorreoAsyn],
-        updateOn: 'change'
+        validators: [Validators.required, Validators.email, this.validadorCorreoAsyn],
+        asyncValidators: [this.validadorCorreoAsyn()],
+        updateOn: 'blur'
       }],
       digitos: ['', [Validators.required]],
       nuevoContrasena: ['', [Validators.required, Validators.minLength(5)]],
       validadorContrasena: ['', [Validators.required, Validators.minLength(5)]]
     }, {});
   }
-  onActualizarContrasenas() {
-
-  }
 
   validadorCorreoAsyn(): AsyncValidatorFn {
-    console.log("=====>");
+    console.log('validador');
     return (usuario: AbstractControl) => {
-      return this.authservice.onRequestPassword(this.formGroup.get("usuario").value).then((res) => {
+      return this.authservice.onRequestPassword(usuario.value).then((res) => {
         return null;
       }).catch((err) => {
-        return { "correo no existe": true };
+        return { inexistente: true };
       });
-    }
+    };
   }
+
 }
