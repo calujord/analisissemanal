@@ -1,36 +1,38 @@
+<app-header></app-header>
 <div class="container">
   <div class="wizzar">
     <mat-horizontal-stepper linear #stepper>
       <mat-step [stepControl]="fiscalFormGroup">
         <form [formGroup]="fiscalFormGroup" class="panelinterno">
           <ng-template matStepLabel>{{stepLabel2}}</ng-template>
-          <mat-radio-group class="radio-group" aria-labelledby="seleccione tipo de cuenta" formControlName="person_typefc">
+          <mat-radio-group class="radio-group" aria-labelledby="seleccione tipo de cuenta"
+            formControlName="person_typefc">
             <mat-radio-button class="radio-btn" selected value="B">Empresa</mat-radio-button>
             <mat-radio-button class="radio-btn" value="P">Persona</mat-radio-button>
           </mat-radio-group>
-          <mat-form-field>
+          <mat-form-field appearance="outline">
             <mat-label>Identificación</mat-label>
             <input matInput type="text" formControlName="identificacionfc" placeholder="0992986100001">
           </mat-form-field>
-          <mat-form-field>
+          <mat-form-field appearance="outline">
             <mat-label>Razón Social</mat-label>
             <input matInput type="text" formControlName="namefc" placeholder="Edgar Vivar">
           </mat-form-field>
-          <mat-form-field appearance="fill">
+          <mat-form-field appearance="outline">
             <mat-label>Seleccione Pais</mat-label>
             <mat-select formControlName="countryfc">
               <mat-option value={{c}} *ngFor="let c of countryList">{{c.name}}</mat-option>
             </mat-select>
           </mat-form-field>
-          <mat-form-field>
+          <mat-form-field appearance="outline">
             <mat-label>Ciudad</mat-label>
             <input matInput type="text" formControlName="cityfc">
           </mat-form-field>
-          <mat-form-field>
+          <mat-form-field appearance="outline">
             <mat-label>Telefono</mat-label>
             <input matInput type="text" formControlName="phonefc">
           </mat-form-field>
-          <mat-form-field>
+          <mat-form-field appearance="outline">
             <mat-label>Dirección</mat-label>
             <input matInput type="text" formControlName="addressfc">
           </mat-form-field>
@@ -43,23 +45,26 @@
       <mat-step [stepControl]="userFormGroup">
         <form [formGroup]="userFormGroup" class="panelinterno">
           <ng-template matStepLabel>{{stepLabel3}}</ng-template>
-          <mat-form-field>
+          <mat-form-field appearance="outline">
             <mat-label>Correo Electrónico</mat-label>
             <input matInput type="text" formControlName="correofc">
           </mat-form-field>
-          <mat-form-field>
+          <mat-form-field appearance="outline">
             <mat-label>Contraseña</mat-label>
             <input matInput type="password" formControlName="contrasena">
           </mat-form-field>
-          <mat-form-field>
+          <mat-form-field appearance="outline">
             <mat-label>Repetir Contraseña</mat-label>
             <input matInput type="password" formControlName="validarcontrasena">
           </mat-form-field>
+          <mat-checkbox>Acepto los Términos y Condiciones</mat-checkbox>
+          <button (click)="saveRegister()" mat-raised-button color="primary"
+            [disabled]="!userFormGroup.valid || !fiscalFormGroup.valid">Crear
+            Cuenta</button>
         </form>
-        </mat-step>
+      </mat-step>
 
     </mat-horizontal-stepper>
   </div>
-  <mat-checkbox *ngIf="userFormGroup.valid && fiscalFormGroup.valid">Acepto los Términos y Condiciones</mat-checkbox>
-  <button mat-raised-button color="primary" *ngIf="userFormGroup.valid && fiscalFormGroup.valid">Crear Cuenta</button>
+
 </div>

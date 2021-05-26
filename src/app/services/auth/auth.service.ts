@@ -50,6 +50,11 @@ export class UserService {
         });
 
     }
+
+    onUserIsTake(email: string) {
+        this.connect.endPoint = `/auth/user/email-taken/?email=${email}`;
+    }
+
     /**
      * 1. Solicitud de recuperación de contraseña
      * 2. Recibirás un código de 4 digitos en el correo

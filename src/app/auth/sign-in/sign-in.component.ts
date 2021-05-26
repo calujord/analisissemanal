@@ -39,10 +39,10 @@ export class SignInComponent implements OnInit {
     person_type: 'B',
     avatar: null,
   } */
-  fiscalFormGroup:FormGroup
-  userFormGroup:FormGroup
-  stepLabel2='Información fiscal';
-  stepLabel3='Información usuario';
+  fiscalFormGroup: FormGroup
+  userFormGroup: FormGroup
+  stepLabel2 = 'Información fiscal';
+  stepLabel3 = 'Información usuario';
   countryList: Country[] = [];
   constructor(
     private authService: UserService,
@@ -55,36 +55,48 @@ export class SignInComponent implements OnInit {
 
   ngOnInit(): void {
 
-   // this.layoutSevice.hideSideBar();
-   // this.layoutSevice.hideNavBar();
+    this.layoutSevice.hideSideBar();
+    this.layoutSevice.hideNavBar();
     this.homeService.getCountries().then((res) => this.countryList = res);
-  //  this.homeService.getAreas().then((res) => this.areaList = res);
-  this.fiscalFormGroup=this.fb.group({
-    identificacionfc:['',[Validators.required,Validators.minLength(6)]],
-    namefc:['',[Validators.required,Validators.minLength(2)]],
-    countryfc:['',[Validators.required]],
-    cityfc:['',[Validators.required]],
-    phonefc:['',[Validators.required,Validators.minLength(6)]],
-    addressfc:['',[Validators.required]],
-    person_typefc:['B',[Validators.required]]
-  });
+    //  this.homeService.getAreas().then((res) => this.areaList = res);
+    this.fiscalFormGroup = this.fb.group({
+      identificacionfc: ['', [Validators.required, Validators.minLength(6)]],
+      namefc: ['', [Validators.required, Validators.minLength(2)]],
+      countryfc: ['', [Validators.required]],
+      cityfc: ['', [Validators.required]],
+      phonefc: ['', [Validators.required, Validators.minLength(6)]],
+      addressfc: ['', [Validators.required]],
+      person_typefc: ['B', [Validators.required]]
+    });
 
-  this.userFormGroup=this.fb.group({
-    correofc:['',[Validators.required,Validators.email]],
-    contrasena:['',[Validators.required,Validators.minLength(4)]],
-    validarcontrasena:['',[Validators.required]] 
-  },{ validators: this.validadorParContrasena });
+    this.userFormGroup = this.fb.group({
+      correofc: ['', [Validators.required, Validators.email]],
+      contrasena: ['', [Validators.required, Validators.minLength(4)]],
+      validarcontrasena: ['', [Validators.required]]
+    }, { validators: this.validadorParContrasena });
 
 
   }
 
-  onSignIn() {
-    /*
-    this.authService.onCreateAccount().then((res: BusinessCreateAccount) => {
+  saveRegister() {
+    let business: BusinessModel = {
+      identification: this.fiscalFormGroup.get("identificacionfc").value,
+      name: this.fiscalFormGroup.get("namefc").value,
+      email: this.userFormGroup.get("correofc").value,
+      phone: this.fiscalFormGroup.get("phonefc").value,
+      address: this.fiscalFormGroup.get("addressfc").value,
+      city: this.fiscalFormGroup.get("cityfc").value,
+      country: this.fiscalFormGroup.get("countryfc").value,
+      person_type: this.fiscalFormGroup.get("person_typefc").value,
+    };
+    this.authService.onCreateAccount(
+      this.userFormGroup.get("correofc").value,
+      this.userFormGroup.get("contrasena").value,
+      business
+    ).then((res: BusinessCreateAccount) => {
       this.stService.setCurrentSession(res);
-      this.router.navigate(['/home']).then();
+      this.router.navigate(['/']).then();
     });
-    */
   }
   validadorParContrasena: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
     const validacionContrasena = control.get('validarcontrasena');

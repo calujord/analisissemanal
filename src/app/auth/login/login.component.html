@@ -1,29 +1,29 @@
+<app-header></app-header>
 <div class="contenedor">
- 
-            
-            <form [formGroup]="formGroup" (ngSubmit)="onLogin()" class="container-login">
-                <h2>Iniciar Sesión</h2>
-                    <mat-form-field appearance="outline">
-                        <mat-label>Correo electrónico</mat-label>
-                        <input matInput placeholder="Correo electrónico" formControlName="username">
-                        <mat-icon matSuffix>account_circle</mat-icon>
-                    </mat-form-field>
-              
-               
-                    <mat-form-field appearance="outline">
-                        <mat-label>Contraseña</mat-label>
-                        <input type="password" matInput placeholder="Contraseña" formControlName="password">
-                        <mat-icon matSuffix>vpn_key</mat-icon>
-                    </mat-form-field>
-               
+    <form [formGroup]="formGroup" (ngSubmit)="onLogin()" class="container-login">
+        <h2>Iniciar Sesión</h2>
+        <mat-form-field appearance="outline">
+            <mat-label>Correo electrónico</mat-label>
+            <input matInput placeholder="Correo electrónico" formControlName="username">
+            <mat-icon matSuffix>account_circle</mat-icon>
+        </mat-form-field>
 
-                <button type="submit" mat-raised-button color="primary" [disabled]="!formGroup.valid">Iniciar sesión</button>
-             
-                    ¿Olvidaste tu contraseña?
-                    <a href="recovery-password" (click)="authCompService.showRecoveryPassword()">Recuperar
-                        contraseña</a>
-               
-                <p>No tienes cuenta</p>
-                <a mat-raised-button color="accent" [disabled]="formGroup.valid"[routerLink]="'create-account'">Crear nueva cuenta</a>
-            </form>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Contraseña</mat-label>
+            <input type="password" matInput placeholder="Contraseña" formControlName="password">
+            <mat-icon matSuffix>vpn_key</mat-icon>
+        </mat-form-field>
+
+
+        <button type="submit" mat-raised-button color="primary" [disabled]="!formGroup.valid">Iniciar sesión</button>
+
+        ¿Olvidaste tu contraseña?
+        <a [routerLink]="'/recovery-password'" (click)="authCompService.showRecoveryPassword()">Recuperar
+            contraseña</a>
+
+        <p>No tienes cuenta</p>
+        <a mat-raised-button color="accent" [disabled]="formGroup.valid" [routerLink]="'/create-account'">Crear nueva
+            cuenta</a>
+    </form>
 </div>

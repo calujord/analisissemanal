@@ -18,6 +18,9 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatStepperModule } from '@angular/material/stepper';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { AppRoutingModule } from '../app-routing.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { UiModule } from '../ui/ui.module';
 
 @NgModule({
   declarations: [
@@ -32,6 +35,9 @@ import { FlexLayoutModule } from '@angular/flex-layout';
   ],
   imports: [
     CommonModule,
+    UiModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
     FlexLayoutModule,
     MatFormFieldModule,
     MatInputModule,
