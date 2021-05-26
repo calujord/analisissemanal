@@ -21,6 +21,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { AppRoutingModule } from '../app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UiModule } from '../ui/ui.module';
+import { CodeInputModule } from 'angular-code-input';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,12 @@ import { UiModule } from '../ui/ui.module';
     MatCardModule,
     MatSelectModule,
     MatCheckboxModule,
-    MatStepperModule
+    MatStepperModule,
+    CodeInputModule.forRoot({
+      codeLength: 4,
+      isCharsCode: true,
+      code: ''
+    }),
   ],
 
 

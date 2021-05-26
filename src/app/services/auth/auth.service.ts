@@ -53,6 +53,9 @@ export class UserService {
 
     onUserIsTake(email: string) {
         this.connect.endPoint = `/auth/user/email-taken/?email=${email}`;
+        return this.connect.httpPost({
+            email: email
+        }).then((response: Map<string, any>) => response.get("success"));
     }
 
     /**
@@ -65,7 +68,10 @@ export class UserService {
         this.connect.endPoint = "/auth/user/recovery-password/";
         return this.connect.httpPost({
             email: email
-        }).then((response: Map<string, any>) => response.get("success"));
+        }).then((response: Map<string, any>) => {
+            console.log(response);
+            return response["success"];
+        });
 
     }
     /**
@@ -81,7 +87,7 @@ export class UserService {
         return this.connect.httpPost({
             "email": email,
             "code": code,
-        }).then((response: Map<string, any>) => response.get("token_validate"));
+        }).then((response: Map<string, any>) => response["token_validate"]);
 
     }
     /**
@@ -96,7 +102,7 @@ export class UserService {
         return this.connect.httpPost({
             password: password,
             token_validate: token
-        }).then((response: Map<string, any>) => response.get("success"));
+        }).then((response: Map<string, any>) => response["success"]);
     }
 
 }
