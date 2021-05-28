@@ -23,7 +23,6 @@ export class AppConnect extends HttpClient {
         return this.post(`${environment.API_URL}${this.endPoint}`, body, {
             headers: this.getHeader(),
         }).toPromise().then((response) => {
-            console.log(response);
             return response;
         }).catch(this.handleError);
     }

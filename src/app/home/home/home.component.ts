@@ -36,7 +36,6 @@ export class HomeComponent implements OnInit {
   }
 
   onResize($event) {
-    console.log(window.innerWidth);
     if (window.innerWidth > 1300) this.breakpoint = 4;
     else if (window.innerWidth <= 1200 && window.innerWidth > 970) this.breakpoint = 3;
     else if (window.innerWidth <= 970 && window.innerWidth > 600) this.breakpoint = 2;

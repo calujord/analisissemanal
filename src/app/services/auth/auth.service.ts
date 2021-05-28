@@ -69,7 +69,6 @@ export class UserService {
         return this.connect.httpPost({
             email: email
         }).then((response: Map<string, any>) => {
-            console.log(response);
             return response["success"];
         });
 

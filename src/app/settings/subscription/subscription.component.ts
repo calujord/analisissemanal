@@ -38,7 +38,6 @@ export class SubscriptionComponent implements OnInit {
     return element.edition_physical == "EN";
   }
   updateData(data) {
-    console.log(data);
     let dialogRef = this.dialog.open(SubscriptionAddressFormComponent, {
       width: '400px',
       data: data

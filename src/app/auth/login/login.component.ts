@@ -44,7 +44,6 @@ export class LoginComponent implements OnInit {
   }
   onLogin() {
     if (this.formGroup.valid) {
-      console.log(this.formGroup.get("username")?.value, "====> ");
       this.userService.onLogin(this.formGroup!.get("username")?.value, this.formGroup!.get("password")?.value).then((res) => {
         this.stService.setCurrentSession(res);
         this.layoutSevice.login();

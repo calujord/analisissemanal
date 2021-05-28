@@ -34,16 +34,14 @@ export class RequestRecoveryPasswordComponent implements OnInit {
   onActualizarContrasenas() {
     this.username = this.formGroup.get("usuario").value;
     this.authservice.onRequestPassword(this.formGroup.get("usuario").value).then((res) => {
-      console.log("pincode");
       this.panel = "PINCODE";
     }).catch((err) => {
       //TODO: CÓDIGO DE 4 DIGITOS INVALIDO
 
       let dialogRef = this.dialog.open(AlertMessageComponent, {
         width: '280px',
-        data: { message: "Código de 4 dígitos incorrecto", title: "Error" }
+        data: { message: "Su cuenta de correo no existe", title: "Error" }
       });
-      console.log(`${err}`);
     });
 
   }
@@ -65,14 +63,13 @@ export class RequestRecoveryPasswordComponent implements OnInit {
   onCodeCompleted(code: string) {
     this.authservice.onValidateCode(this.username, code).then((res) => {
       this.tokenPassword = `${res}`;
-      console.log(this.tokenPassword);
       this.panel = "PASSWORD";
     }).catch((err) => {
       //TODO: SU CÓDIGO HA EXPIRADO
 
       let dialogRef = this.dialog.open(AlertMessageComponent, {
         width: '280px',
-        data: { message: "Código de 4 dígitos ha expirado", title: "Error" }
+        data: { message: "Código de 4 dígitos ingresado es incorrecto", title: "Error" }
       });
 
     });
