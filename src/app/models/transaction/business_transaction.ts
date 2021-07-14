@@ -1,3 +1,4 @@
+import { Edition } from "../home/home.model";
 import { CardModel } from "../rates/rates";
 
 export interface BusinessSubscriptionPurchase {
@@ -8,6 +9,14 @@ export interface BusinessSubscriptionPurchase {
     paymentez_response: PaymentezResponse;
     balance: Balance;
     business_subscription: BusinessSubscription;
+}
+export interface EditionPaid {
+    pk: number;
+    date_create: string;
+    paymentez_response: PaymentezResponse;
+    balance: Balance;
+    business_subscription: BusinessSubscription;
+    edition_language: Edition;
 }
 
 export interface Balance {

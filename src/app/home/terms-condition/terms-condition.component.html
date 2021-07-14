@@ -1,0 +1,23 @@
+<div class="fixActionRow">
+    <h2 mat-dialog-title>Términos y condiciones</h2>
+
+    <mat-dialog-content>
+        <div *ngIf="terms!=null">
+            <h2></h2>
+            <p [innerHTML]="terms">
+            </p>
+            <hr>
+        </div>
+        <div *ngIf="terms == null">
+            <sa-spinner-dotted class="spinner" fxFlex="row" fxLayoutAlign="center center" [size]="50" [thickness]="100"
+                [speed]="100" color="#dd0031"></sa-spinner-dotted>
+        </div>
+    </mat-dialog-content>
+
+    <mat-dialog-actions>
+        <div *ngIf="terms!=null">
+            <button mat-button mat-raised-button color="primary" (click)="onOk()">Aceptar</button>
+            <button mat-button mat-raised-button color="secondary" (click)="onCancel()">Cancelar</button>
+        </div>
+    </mat-dialog-actions>
+</div>

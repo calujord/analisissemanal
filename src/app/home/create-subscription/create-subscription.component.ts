@@ -7,6 +7,7 @@ import { BusinessSubscriptionPurchase } from 'src/app/models/transaction/busines
 import { EditionService } from 'src/app/services/edition-service/EditionServices';
 import { UtilService } from 'src/app/services/utils/utils.service';
 import { CardFormComponent } from '../../cards/card-form/card-form.component';
+import { TermsConditionComponent } from '../terms-condition/terms-condition.component';
 
 @Component({
   selector: 'app-create-subscription',
@@ -24,6 +25,7 @@ export class CreateSubscriptionComponent implements OnInit {
   public cardList: CardModel[] = [];
   public cardSelected: CardModel;
   public bsp: BusinessSubscriptionPurchase;
+  public checked: boolean = false;
   constructor(
     private utilsService: UtilService,
     private creditCardService: CreditcardService,
@@ -44,6 +46,22 @@ export class CreateSubscriptionComponent implements OnInit {
       this.cardList = res;
     })
   }
+
+  onOpenTermsAndCondition(ev) {
+
+    if (this.checked == true) {
+      let dialogTerms = this.dialog.open(TermsConditionComponent, {
+      });
+
+      dialogTerms.afterClosed().subscribe(result => {
+        console.log('The dialog was closed');
+        this.checked = result;
+      });
+    }
+
+
+  }
+
   readEdition() {
     this.onSuccessSubscription.emit();
   }

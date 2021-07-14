@@ -13,6 +13,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { FrontendModule } from '../frontend/frontend.module';
+import { SpinnerDottedModule } from 'spinners-angular/spinner-dotted';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import { FrontendModule } from '../frontend/frontend.module';
     MatButtonModule,
     MatCardModule,
     FrontendModule,
+    SpinnerDottedModule,
 
   ],
   exports: [

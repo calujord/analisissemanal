@@ -3,11 +3,11 @@
     <mat-card>
         <form [formGroup]="formGroup" (ngSubmit)="searchEditions()">
             <h1>Buscar ediciones</h1>
-            <div fxLayout="row" fxLayoutGap="12px">
+            <div fxLayout="row " fxLayoutGap="12px">
                 <div fxFlex="20%">
                     <mat-form-field appearance="outline">
                         <mat-label>Tema</mat-label>
-                        <mat-select formControlName="category">
+                        <mat-select formControlName="category" (valueChange)="searchEditions()">
                             <mat-option [value]="c.pk" *ngFor="let c of categoryList">{{c.name}}</mat-option>
                         </mat-select>
                     </mat-form-field>
@@ -50,14 +50,23 @@
             </div>
         </form>
     </mat-card>
+    <div class="results">
+        <div fxLayout="row wrap" *ngIf="edList!=null">
+            <div *ngFor="let item of edList.edition" fxFlex="32%" style="margin-left: 5px; margin-right: 5px">
+                <app-edition-card-item [edition]="item" [style.padding-top.px]="20"></app-edition-card-item>
 
-    <div class="results" *ngIf="edList!=null" fxLayout="row">
-        <div *ngFor="let item of edList.edition" fxFlex="33%" style="margin-left: 5px; margin-right: 5px">
-            <app-edition-card-item [edition]="item" [style.padding-top.px]="20"></app-edition-card-item>
+            </div>
+            <div *ngIf="edList.edition.length==0">
+                <p>No existen datos con este criterio de búsqueda</p>
+            </div>
+        </div>
 
+        <div *ngIf="edList==null">
+            <sa-spinner-dotted class="spinner" fxFlex="row" fxLayoutAlign="center center" [size]="50" [thickness]="100"
+                [speed]="100" color="#dd0031"></sa-spinner-dotted>
         </div>
-        <div *ngIf="edList.edition.length==0">
-            <p>No existen datos con este criterio de búsqueda</p>
-        </div>
+
     </div>
+
+
 </div>

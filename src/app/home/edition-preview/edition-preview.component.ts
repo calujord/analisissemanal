@@ -14,6 +14,7 @@ import { HomeService } from '../../services/home/home.service';
 export class EditionPreviewComponent implements OnInit {
   public editionRead: EditionRead;
   public createNewSubscription: boolean = false;
+  public buyNewEdition: boolean = false;
   public isLoadedPdf: boolean = true;
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: Edition,
@@ -40,10 +41,16 @@ export class EditionPreviewComponent implements OnInit {
   showSuscription() {
     this.createNewSubscription = true;
   }
+  showBuyEdition() {
+    this.buyNewEdition = true;
+  }
   onFinishedPdfPreview(event) {
     this.isLoadedPdf = true;
   }
   showButtonWantToSubscribe() {
-    return !this.createNewSubscription && this.editionRead && this.editionRead.status_access != 'CAN_READ';
+    return !this.createNewSubscription && this.editionRead && this.editionRead.status_access == 'NO_SUBSCRIBE';
+  }
+  showButtonWantToBuy() {
+    return !this.buyNewEdition && this.editionRead && this.editionRead.status_access == 'ONLY_BUY';
   }
 }

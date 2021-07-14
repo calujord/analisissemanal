@@ -1,0 +1,29 @@
+<div>
+    <p>Esta edición no está disponible en su suscripción deberá pagar</p>
+    <p>$ {{edition.edition.price}}</p>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Seleccione una tarjeta de crédito</mat-label>
+        <mat-select [(ngModel)]="cardSelected">
+            <mat-option [value]="card" *ngFor="let card of cardList">{{card.bin}}
+                ({{card.expiry_month}}/{{card.expiry_year}})
+            </mat-option>
+            <mat-option (click)="onOpenDialogCreditCard()">
+                Agregar nueva tarjeta
+            </mat-option>
+        </mat-select>
+
+    </mat-form-field>
+    <div>
+        <mat-checkbox required (change)="onOpenTermsAndCondition($event)" class="example-margin" [(ngModel)]="checked">
+            Acepto términos y condiciones
+        </mat-checkbox>
+    </div><br>
+
+
+    <div>
+        <button [disabled]="!(cardSelected!=null && checked==true)" type="button" mat-button mat-raised-button
+            color="primary" (click)="onPayEdition()">Confirmar
+            compra</button>
+    </div>
+</div>

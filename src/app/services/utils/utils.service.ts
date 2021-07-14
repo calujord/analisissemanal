@@ -26,4 +26,9 @@ export class UtilService {
         this.connect.endPoint = "/as-rate";
         return this.connect.httpGet().then((e) => e = e["rates"]);
     }
+
+    getTerms(): Promise<String> {
+        this.connect.endPoint = "/terms-condition/";
+        return this.connect.httpGet().then((e) => e);
+    }
 }

@@ -30,6 +30,13 @@ export class EditionService {
         return this.connect.httpGet();
     }
 
+    payEdition(card: CardModel, editionPk: number): Promise<BusinessSubscriptionPurchase> {
+        this.connect.endPoint = `/articles/pay-edition/${editionPk}/`;
+
+        return this.connect.httpPost({
+            token: card.token,
+        });
+    }
     search(page: string, query: string, category: number, date_range: string): Promise<EditionList> { // 
         let par = new HttpParams()
             .set("q", query)

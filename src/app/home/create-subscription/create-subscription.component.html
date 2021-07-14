@@ -140,7 +140,14 @@
                         </mat-select>
                     </mat-form-field>
 
-                    <button color="primary" mat-raised-button (click)="doSubscription()">Suscribirme ahora</button>
+                    <div>
+                        <mat-checkbox required (change)="onOpenTermsAndCondition($event)" class="example-margin"
+                            [(ngModel)]="checked">
+                            Acepto términos y condiciones
+                        </mat-checkbox>
+                    </div><br>
+                    <button [disabled]="!checked" color="primary" mat-raised-button
+                        (click)="doSubscription()">Suscribirme ahora</button>
                 </div>
             </div>
         </div>

@@ -42,6 +42,7 @@ export class SearchComponent implements OnInit {
     });
   }
   searchEditions(): void {
+    this.edList = null;
     this.editonServices.search(`${this.page}`, this.formGroup.get("query").value, this.formGroup.get("category").value, this.getDateRange()).then((res) => {
       this.edList = res;
     });

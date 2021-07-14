@@ -40,6 +40,9 @@ import { AddItemCartComponent } from './add-item-cart/add-item-cart.component';
 import { AlertMessageComponent } from '../alert-message/alert-message.component';
 import { AppRoutingModule } from '../app-routing.module';
 import { UiModule } from '../ui/ui.module';
+import { BuyEditionComponent } from './buy-edition/buy-edition.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { TermsConditionComponent } from './terms-condition/terms-condition.component';
 
 
 
@@ -58,11 +61,14 @@ import { UiModule } from '../ui/ui.module';
     ConfigurationComponent,
     CreateSubscriptionComponent,
     AddItemCartComponent,
-    AlertMessageComponent
+    AlertMessageComponent,
+    BuyEditionComponent,
+    TermsConditionComponent,
+
 
 
   ],
-  entryComponents: [EditionPreviewComponent, CreateSubscriptionComponent,
+  entryComponents: [EditionPreviewComponent, CreateSubscriptionComponent, BuyEditionComponent,
   ],
   exports: [
     MatRippleModule,
@@ -94,6 +100,8 @@ import { UiModule } from '../ui/ui.module';
     FlexLayoutModule,
     MatMenuModule,
     MatSelectModule,
+    MatCheckboxModule,
+
 
 
     UiModule,

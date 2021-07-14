@@ -31,6 +31,10 @@
                 <div class="item item-2" fxFlex="100%" *ngIf="createNewSubscription">
                     <app-create-subscription (onSuccessSubscription)="reload()"></app-create-subscription>
                 </div>
+                <div class="item item-2" fxFlex="100%" *ngIf="buyNewEdition">
+                    <app-buy-edition [edition]="editionRead" (onSuccessSubscription)="reload()"></app-buy-edition>
+                </div>
+
             </div>
         </div>
     </div>
@@ -41,6 +45,9 @@
     <button button (click)="showSuscription()" *ngIf="showButtonWantToSubscribe() && isAuthenticated()"
         mat-raised-button color="primary">Quiero
         suscribirme</button>
+
+    <button button (click)="showBuyEdition()" *ngIf="showButtonWantToBuy() && isAuthenticated()" mat-raised-button
+        color="primary">Comprar edición</button>
     <button button routerLink="/login" [mat-dialog-close]="true" *ngIf="!isAuthenticated()" mat-raised-button
         color="primary">Iniciar
         sesión</button>
