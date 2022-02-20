@@ -3,8 +3,8 @@
     <mat-card>
         <form [formGroup]="formGroup" (ngSubmit)="searchEditions()">
             <h1>Buscar ediciones</h1>
-            <div fxLayout="row " fxLayoutGap="12px">
-                <div fxFlex="20%">
+            <div fxLayout.xs="column" fxLayout="row " fxLayoutGap="12px">
+                <div fxFlex.xs="100" fxFlex="20%">
                     <mat-form-field appearance="outline">
                         <mat-label>Tema</mat-label>
                         <mat-select formControlName="category" (valueChange)="searchEditions()">
@@ -12,7 +12,7 @@
                         </mat-select>
                     </mat-form-field>
                 </div>
-                <div fxFlex="20%">
+                <div fxFlex.xs="100" fxFlex="20%">
                     <mat-form-field appearance="outline">
                         <mat-label>Seleccione rangos de fechas</mat-label>
                         <mat-date-range-input [formGroup]="formGroup" [rangePicker]="picker">
@@ -28,19 +28,19 @@
                         </mat-error>
                     </mat-form-field>
                 </div>
-                <div fxFlex="60%">
-                    <div fxLayout="row">
-                        <mat-form-field appearance="outline" fxFlex="calc(100% - 40px)">
-                            <mat-label>Buscador</mat-label>
+                <div fxFlex.xs="100" fxFlex="60%">
+                    <div fxLayout="row" fxLayout.xs="column">
+                        <mat-form-field appearance="outline" fxFlex.xs="100%" fxFlex="calc(100% - 120px)">
+                            <mat-label>Buscador de asuntos tratados en el análisis</mat-label>
                             <input matInput placeholder="¿Qué estás buscando?" formControlName="query">
                             <!-- <mat-icon matSuffix>account_circle</mat-icon> -->
                         </mat-form-field>
 
-                        <div fxFlex="40px">
-
-                            <button type="submit" style="margin-top: 10px;" mat-icon-button
+                        <div fxFlex="120px">
+                            <button type="submit" style="margin-top: 10px;" mat-button
                                 aria-label="Example icon button with a vertical three dot icon">
                                 <mat-icon>search</mat-icon>
+                                Buscar
                             </button>
 
                         </div>
@@ -51,8 +51,9 @@
         </form>
     </mat-card>
     <div class="results">
-        <div fxLayout="row wrap" *ngIf="edList!=null">
-            <div *ngFor="let item of edList.edition" fxFlex="32%" style="margin-left: 5px; margin-right: 5px">
+        <div fxLayout="row wrap" *ngIf="edList!=null" fxLayout.xs="column" fxLayout.xs="column">
+            <div *ngFor="let item of edList.edition" fxFlex.xs="100%" fxFlex.md="48%" fxFlex.lg="48%" fxFlex.xl="33%"
+                style="margin-left: 5px; margin-right: 5px">
                 <app-edition-card-item [edition]="item" [style.padding-top.px]="20"></app-edition-card-item>
 
             </div>
@@ -70,3 +71,4 @@
 
 
 </div>
+<app-footer></app-footer>

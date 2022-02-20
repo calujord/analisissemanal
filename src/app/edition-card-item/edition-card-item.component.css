@@ -28,3 +28,18 @@
 mat-card-content{
     text-align: justify;
 }
+.title-head{
+    font-size: 17px;
+    font-weight: 800;
+}
+.panel{
+
+    
+    border: 1px solid #e7e7e7;
+    border-radius: 3px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+p{
+    height: 100px;
+}

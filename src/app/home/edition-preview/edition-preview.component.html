@@ -23,6 +23,12 @@
         </div>
         <div *ngIf="!canReadEdition()">
             <div mat-dialog-title>{{editionRead.edition.title}}</div>
+
+            <mat-card class="alert-devices" *ngIf="editionRead.status_access == 'DEVICES_EXCEEDED'">
+                <mat-card-title>Lo sentimos!</mat-card-title>
+                <mat-card-subtitle style="color: white;">No podrá leer esta edición, Ha superado el número de
+                    dispositivos. Contáctese con el administrador de su cuenta</mat-card-subtitle>
+            </mat-card>
             <div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="10px"
                 fxLayoutGap.xs="0">
                 <div class="item item-1" fxFlex="100%" *ngIf="!createNewSubscription">

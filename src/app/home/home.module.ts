@@ -23,6 +23,8 @@ import { MatRippleModule } from '@angular/material/core';
 import {
   MatFormFieldModule, MatLabel
 } from '@angular/material/form-field';
+import { MatExpansionModule } from '@angular/material/expansion';
+
 import { MatInputModule } from '@angular/material/input';
 import { MatCard, MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
@@ -43,6 +45,10 @@ import { UiModule } from '../ui/ui.module';
 import { BuyEditionComponent } from './buy-edition/buy-edition.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { TermsConditionComponent } from './terms-condition/terms-condition.component';
+import { ContactComponent } from '../discovery/pages/contact/contact.component';
+import { StaffComponent } from '../discovery/pages/staff/staff.component';
+import { ProductComponent } from '../discovery/pages/products/product.component';
+import { FooterComponent } from '../discovery/pages/footer/footer.component';
 
 
 
@@ -64,11 +70,14 @@ import { TermsConditionComponent } from './terms-condition/terms-condition.compo
     AlertMessageComponent,
     BuyEditionComponent,
     TermsConditionComponent,
-
+    ProductComponent,
+    StaffComponent,
+    ContactComponent,
 
 
   ],
-  entryComponents: [EditionPreviewComponent, CreateSubscriptionComponent, BuyEditionComponent,
+  entryComponents: [
+    EditionPreviewComponent, CreateSubscriptionComponent, BuyEditionComponent,
   ],
   exports: [
     MatRippleModule,
@@ -77,6 +86,9 @@ import { TermsConditionComponent } from './terms-condition/terms-condition.compo
     FormsModule,
     MatFormFieldModule,
     MatCommonModule,
+
+
+
 
   ],
   imports: [
@@ -101,10 +113,9 @@ import { TermsConditionComponent } from './terms-condition/terms-condition.compo
     MatMenuModule,
     MatSelectModule,
     MatCheckboxModule,
-
-
-
+    MatExpansionModule,
     UiModule,
+
   ]
 })
 export class HomeModule { }

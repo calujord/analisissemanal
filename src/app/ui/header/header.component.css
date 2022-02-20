@@ -14,3 +14,49 @@
   top: 0; /* Sets the sticky toolbar to be on top */
   z-index: 1000; /* Ensure that your app's content doesn't overlap the toolbar */
 }
+
+.menu-items-complete{
+  display: none;
+}
+.menu-items{
+  display: block;
+}
+@media only screen and (min-width: 1200px) and (max-width: 1300px) {
+  
+  .menu-items-complete{
+    display: block;
+  }
+  .menu-items{
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 1199px) and (min-width: 992px) {
+  
+  .menu-items-complete{
+    display: block;
+  }
+  .menu-items{
+    display: none;
+  }
+
+}
+@media only screen and (max-width: 991px) and (min-width: 768px) {
+  
+  .menu-items-complete{
+    display: block;
+  }
+  .menu-items{
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 750px) and (min-width: 480px){
+  
+  .menu-items-complete{
+    display: block;
+  }
+  .menu-items{
+    display: none;
+  }
+}

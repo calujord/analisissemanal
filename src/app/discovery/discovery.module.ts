@@ -14,11 +14,13 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { FrontendModule } from '../frontend/frontend.module';
 import { SpinnerDottedModule } from 'spinners-angular/spinner-dotted';
+import { FooterComponent } from './pages/footer/footer.component';
+import { HomeModule } from '../home/home.module';
 
 
 @NgModule({
   declarations: [
-    SearchComponent
+    SearchComponent,
   ],
   imports: [
     FlexLayoutModule,
@@ -36,6 +38,8 @@ import { SpinnerDottedModule } from 'spinners-angular/spinner-dotted';
     MatCardModule,
     FrontendModule,
     SpinnerDottedModule,
+    HomeModule,
+
 
   ],
   exports: [

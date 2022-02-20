@@ -37,6 +37,9 @@ export class BuyEditionComponent implements OnInit {
       this.cardList = res;
     })
   }
+  getTotalPay() {
+    return this.edition.edition.price * 1.12;
+  }
   onSuccess() {
     this.onSuccessSubscription.emit();
   }
@@ -53,8 +56,6 @@ export class BuyEditionComponent implements OnInit {
         this.checked = result;
       });
     }
-
-
   }
   onOpenDialogCreditCard() {
     let dialogRef = this.dialog.open(CardFormComponent, {

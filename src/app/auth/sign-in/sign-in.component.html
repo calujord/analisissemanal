@@ -14,14 +14,18 @@
             <mat-label>Identificación</mat-label>
             <input matInput type="text" formControlName="identificacionfc" placeholder="0992986100001">
           </mat-form-field>
-          <mat-form-field appearance="outline">
+          <mat-form-field appearance="outline" *ngIf="isBusiness()">
             <mat-label>Razón Social</mat-label>
-            <input matInput type="text" formControlName="namefc" placeholder="Edgar Vivar">
+            <input matInput type="text" formControlName="namefc" placeholder="Nombre de empresa">
+          </mat-form-field>
+          <mat-form-field appearance="outline" *ngIf="!isBusiness()">
+            <mat-label>Nombres</mat-label>
+            <input matInput type="text" formControlName="namefc" placeholder="Nombres">
           </mat-form-field>
           <mat-form-field appearance="outline">
             <mat-label>Seleccione Pais</mat-label>
             <mat-select formControlName="countryfc">
-              <mat-option value={{c}} *ngFor="let c of countryList">{{c.name}}</mat-option>
+              <mat-option [value]="c" *ngFor="let c of countryList">{{c.name}}</mat-option>
             </mat-select>
           </mat-form-field>
           <mat-form-field appearance="outline">
@@ -57,9 +61,10 @@
             <mat-label>Repetir Contraseña</mat-label>
             <input matInput type="password" formControlName="validarcontrasena">
           </mat-form-field>
-          <mat-checkbox>Acepto los Términos y Condiciones</mat-checkbox>
+          <mat-checkbox [(ngModel)]="aceptado" (change)="confirmTerms(!aceptado)">
+            Acepto los Términos y Condiciones</mat-checkbox>
           <button (click)="saveRegister()" mat-raised-button color="primary"
-            [disabled]="!userFormGroup.valid || !fiscalFormGroup.valid">Crear
+            [disabled]="!userFormGroup.valid || !fiscalFormGroup.valid || !aceptado">Crear
             Cuenta</button>
         </form>
       </mat-step>

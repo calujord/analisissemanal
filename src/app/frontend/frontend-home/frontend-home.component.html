@@ -2,27 +2,40 @@
     <app-banner [bannerList]="homeModel.banners"></app-banner>
 
     <div class="container">
-        <div>
-            <h1 class="title-destacados">Ediciones destacadas</h1>
-            <div fxLayout="row wrap">
-                <div *ngFor="let item of homeModel.last_editions" fxFlex="33%"
-                    style="padding-left: 5px; padding-right:5px;">
-                    <app-edition-card-item [edition]="item" [style.padding-top.px]="20"></app-edition-card-item>
-                </div>
-            </div>
+        <mat-accordion class="example-headers-align" multi>
 
-            <div *ngFor="let el of homeModel.edition_by_category" class="edition-by-category">
-                <h2 class="title-destacados">{{el.category.name}} </h2>
-
-
+            <mat-expansion-panel [expanded]="true">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <h2>Últimas ediciones</h2>
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
                 <div fxLayout="row wrap">
-                    <div *ngFor="let item of el.editions" fxFlex="33%" style="padding-left: 5px; padding-right:5px;">
-                        <app-edition-card-item [edition]="item"></app-edition-card-item>
+                    <div *ngFor="let item of homeModel.last_editions" fxFlex.xs="100%" fxFlex.sm="50%" fxFlex.md="50%"
+                        fxFlex="50%" style="padding-left: 5px; padding-right:5px;">
+                        <app-edition-card-item [edition]="item" [style.padding-top.px]="20"></app-edition-card-item>
                     </div>
                 </div>
-            </div>
+            </mat-expansion-panel>
+            <mat-expansion-panel *ngFor="let el of homeModel.edition_by_category">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <h2>{{el.category.name}}</h2>
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
 
-        </div>
+                <div fxLayout="row wrap">
+                    <div *ngFor="let item of el.editions" fxFlex.xs="100%" fxFlex.sm="50%" fxFlex.md="50%" fxFlex="50%"
+                        style="padding-left: 5px; padding-right:5px;">
+                        <app-edition-card-item [edition]="item"></app-edition-card-item>
+                    </div>
+                    <div fxFlex="50%" style="padding-left: 5px; padding-right:5px;">
+                        <a class="ver-mas" [routerLink]="['/category', el.category.pk]"> Ver más</a>
+                    </div>
+                </div>
+
+            </mat-expansion-panel>
+        </mat-accordion>
     </div>
-
+    <app-footer></app-footer>
 </div>

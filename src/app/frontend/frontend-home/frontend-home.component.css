@@ -4,3 +4,25 @@
     margin-top: 20px;
     margin-right: auto;
 }
+h2 {
+    padding-top: 16px;
+    font-size: 18px!important;
+    font-weight: 400!important;
+}
+.ver-mas{
+
+    display: block;
+    border: 1px solid #e7e7e7;
+    height: 113px;
+    text-align: center;
+    padding-top: 100px;
+    text-align: center;
+    color: black;
+    border-radius: 5px;
+}
+
+.ver-mas:hover{
+
+    border: 1px solid #a9a9a9;
+
+}

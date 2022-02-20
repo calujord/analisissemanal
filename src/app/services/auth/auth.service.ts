@@ -36,6 +36,7 @@ export class UserService {
      */
     onCreateAccount(username: string, password: string, business: BusinessModel): Promise<BusinessCreateAccount> {
         this.connect.endPoint = "/create-account/";
+        console.log(business.country);
         return this.connect.httpPost({
             "username": username,
             "password": password,

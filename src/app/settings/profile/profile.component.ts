@@ -42,7 +42,7 @@ export class ProfileComponent implements OnInit {
       fiscal_name: new FormControl(this.business.name, [Validators.required]),
       person_type: new FormControl(this.business.person_type, [Validators.required]),
       city: new FormControl(this.business.city, [Validators.required]),
-      area: new FormControl(this.business.area.pk),
+      area: new FormControl(this.business.area != null ? this.business.area.pk : null),
       phone: new FormControl(this.business.phone, [Validators.required]),
       country: new FormControl(this.business.country.pk, [Validators.required]),
       address: new FormControl(this.business.address, [Validators.required]),

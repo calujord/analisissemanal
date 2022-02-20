@@ -91,14 +91,26 @@ export class CreateSubscriptionComponent implements OnInit {
 
     });
   }
+  getRateEnPh(): number {
+    return this.rateSelected.physical_price_en * this.printerEn;
+  }
+  getRateEsPh(): number {
+    return this.rateSelected.physical_price_es * this.printerEs;
+  }
+  getExtraDeviceES() {
+    return this.rateSelected.price_extra_device * this.getExtraDeviceByLang("es");
+  }
+  getExtraDeviceEN() {
+    return this.rateSelected.price_extra_device * this.getExtraDeviceByLang("en");
+  }
+
   getImporte(): number {
 
     return this.rateSelected.base_price +
-      this.rateSelected.physical_price_en * this.printerEn +
-      this.rateSelected.physical_price_es * this.printerEs +
-      this.rateSelected.price_extra_device * this.getExtraDeviceByLang("es") +
-      this.rateSelected.price_extra_device * this.getExtraDeviceByLang("en")
-      ;
+      this.getRateEnPh() +
+      this.getRateEsPh() +
+      this.getExtraDeviceES() +
+      this.getExtraDeviceEN();
   }
 
   getImpuesto() {

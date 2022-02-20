@@ -11,7 +11,9 @@ import { MatCarouselModule } from '@ngmodule/material-carousel';
 import { AppRoutingModule } from '../app-routing.module';
 import { RouterModule } from '@angular/router';
 import { DialogoerrorComponent } from './dialogoerror/dialogoerror.component';
-import {MatDialogModule} from "@angular/material/dialog";
+import { MatDialogModule } from "@angular/material/dialog";
+import { FooterComponent } from '../discovery/pages/footer/footer.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 
@@ -20,18 +22,22 @@ import {MatDialogModule} from "@angular/material/dialog";
     HeaderComponent,
     BannerComponent,
     DialogoerrorComponent,
+    FooterComponent,
+
   ],
-    imports: [
-        CommonModule,
-        MatIconModule,
-        MatButtonModule,
-        MatMenuModule,
-        MatToolbarModule,
-        MatCardModule,
-        MatCarouselModule,
-        RouterModule,
-        MatDialogModule,
-    ],
-  exports: [HeaderComponent, BannerComponent]
+  imports: [
+    CommonModule,
+    MatIconModule,
+    MatButtonModule,
+    MatMenuModule,
+    MatToolbarModule,
+    MatCardModule,
+    MatCarouselModule,
+    RouterModule,
+    MatDialogModule,
+    FlexLayoutModule,
+
+  ],
+  exports: [HeaderComponent, BannerComponent, FooterComponent]
 })
 export class UiModule { }

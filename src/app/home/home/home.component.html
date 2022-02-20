@@ -1,11 +1,12 @@
-<app-header></app-header>
+<div *ngIf="homeModel!=null">
+    <app-banner [bannerList]="homeModel.banners"></app-banner>
 
-<div *ngIf="homeModel != null">
     <div class="container">
         <div>
-            <h1 class="title-destacados">Ediciones destacadas</h1>
-            <div fxLayout="row wrap">
-                <div *ngFor="let item of homeModel.last_editions">
+            <h1 class="title-destacados">Últimas ediciones</h1>
+            <div fxLayout="row wrap" fxLayout.xs="column">
+                <div *ngFor="let item of homeModel.last_editions" fxFlex.xs="100%" fxFlex="33%"
+                    style="padding-left: 5px; padding-right:5px;">
                     <app-edition-card-item [edition]="item" [style.padding-top.px]="20"></app-edition-card-item>
                 </div>
             </div>
@@ -15,7 +16,8 @@
 
 
                 <div fxLayout="row wrap">
-                    <div *ngFor="let item of el.editions">
+                    <div *ngFor="let item of el.editions" fxFlex.xs="100%" fxFlex="33%"
+                        style="padding-left: 5px; padding-right:5px;">
                         <app-edition-card-item [edition]="item"></app-edition-card-item>
                     </div>
                 </div>
@@ -23,5 +25,6 @@
 
         </div>
     </div>
+
 
 </div>

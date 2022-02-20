@@ -23,19 +23,12 @@
         <div fxLayout="row">
 
             <div class="subscripcion-content" fxFlex="50%">
-                <div fxLayout="row">
-                    <div fxFlex="50%">
-                        <h3>{{rateSelected.label}}</h3>
-                    </div>
-                    <div fxFlex="50%" class="price">
-                        <label for="">$ {{rateSelected.base_price}}</label>
-                    </div>
-                </div>
+
 
                 <div>
 
                     <mat-form-field appearance="outline">
-                        <mat-label>Tipo de suscripción</mat-label>
+                        <mat-label>Frecuencia de pago</mat-label>
                         <mat-select [(ngModel)]="rateSelected">
                             <mat-option [value]="item" *ngFor="let item of ratesList">{{item.label}}</mat-option>
                         </mat-select>
@@ -67,42 +60,87 @@
                         </div>
                         <app-add-item-cart [cant]="deviceEs" (onChange)="onChangeDevicesEs($event)"></app-add-item-cart>
                     </div>
+                    <div fxLayout="row">
+                        <div fxFlex="100%">
+                            <div class="title-samples">
+                                <h2>Ejemplares impresos</h2>
+                                <p>Número de copias impresas </p>
+
+                                <div fxLayout="row">
+                                    <div fxFlex="60%">
+
+                                        <div class="listTile">
+                                            <h4>Inglés</h4>
+                                            <p>Precio: ${{rateSelected.physical_price_en}}</p>
+                                        </div>
+                                    </div>
+                                    <div fxFlex="40%">
+                                        <app-add-item-cart [cant]="printerEn" (onChange)="onChangePrinterEn($event)">
+                                        </app-add-item-cart>
+                                    </div>
+                                </div>
+                                <div fxLayout="row">
+                                    <div fxFlex="60%">
+                                        <div class="listTile">
+                                            <h4>Español</h4>
+                                            <p>Precio: ${{rateSelected.physical_price_es}}</p>
+                                        </div>
+                                    </div>
+                                    <div fxFlex="40%">
+                                        <app-add-item-cart [cant]="printerEs" (onChange)="onChangePrinterEs($event)">
+                                        </app-add-item-cart>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <div class="subscripcion-content" fxFlex="50%">
-                <div class="title-samples">
-                    <h2>Ejemplares impresos</h2>
-                    <p>Número de copias impresas </p>
-
-                    <div fxLayout="row">
-                        <div fxFlex="60%">
-
-                            <div class="listTile">
-                                <h4>Inglés</h4>
-                                <p>Precio: ${{rateSelected.physical_price_en}}</p>
-                            </div>
-                        </div>
-                        <div fxFlex="40%">
-                            <app-add-item-cart [cant]="printerEn" (onChange)="onChangePrinterEn($event)">
-                            </app-add-item-cart>
-                        </div>
-                    </div>
-                    <div fxLayout="row">
-                        <div fxFlex="60%">
-                            <div class="listTile">
-                                <h4>Español</h4>
-                                <p>Precio: ${{rateSelected.physical_price_es}}</p>
-                            </div>
-                        </div>
-                        <div fxFlex="40%">
-                            <app-add-item-cart [cant]="printerEs" (onChange)="onChangePrinterEs($event)">
-                            </app-add-item-cart>
-                        </div>
-                    </div>
-                </div>
                 <div>
                     <h2>Resumen</h2>
+                    <div fxLayout="row">
+                        <div fxFlex="50%">
+                            <h3>{{rateSelected.label}}</h3>
+                        </div>
+                        <div fxFlex="50%" class="price">
+                            <label for="">$ {{rateSelected.base_price| number:'1.2-2'}}</label>
+                        </div>
+                    </div>
+                    <div fxLayout="row">
+                        <div fxFlex="50%">
+                            <b>Disp. Ing.</b>
+                        </div>
+                        <div fxFlex="50%" class="currency">
+                            <label>$ {{getExtraDeviceEN() | number:'1.2-2'}}</label>
+                        </div>
+                    </div>
+                    <div fxLayout="row">
+                        <div fxFlex="50%">
+                            <b>Disp. Esp.</b>
+                        </div>
+                        <div fxFlex="50%" class="currency">
+                            <label>$ {{getExtraDeviceES() | number:'1.2-2'}}</label>
+                        </div>
+                    </div>
+                    <div fxLayout="row">
+                        <div fxFlex="50%">
+                            <b>Ej. impreso Ing.</b>
+                        </div>
+                        <div fxFlex="50%" class="currency">
+                            <label>$ {{getRateEnPh() | number:'1.2-2'}}</label>
+                        </div>
+                    </div>
+                    <div fxLayout="row">
+                        <div fxFlex="50%">
+                            <b>Ej. impreso Esp.</b>
+                        </div>
+                        <div fxFlex="50%" class="currency">
+                            <label>$ {{getRateEsPh() | number:'1.2-2'}}</label>
+                        </div>
+                    </div>
                     <div fxLayout="row">
                         <div fxFlex="50%">
                             <b>Importe</b>

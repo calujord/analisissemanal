@@ -6,6 +6,7 @@ import { StorageService } from 'src/app/services/auth/storage-service';
 import { EditionService } from 'src/app/services/edition-service/EditionServices';
 
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-search',
@@ -18,10 +19,14 @@ export class SearchComponent implements OnInit {
   date = new FormControl(moment());
   public edList: EditionList;
   formGroup!: FormGroup;
+  categoryId: number;
+
+
   constructor(
     fb: FormBuilder,
     private stService: StorageService,
     private editonServices: EditionService,
+    private route: ActivatedRoute,
 
   ) {
 
@@ -33,13 +38,26 @@ export class SearchComponent implements OnInit {
     });
     this.editonServices.getCategories().then((res) => {
       this.categoryList.push.apply(this.categoryList, res.object_list);
-    })
+      for (var i = 0; i != this.categoryList.length; i++) {
+        console.log(this.categoryList[i], this.route.snapshot.params['id']);
+        if (this.categoryList[i].pk == Number(this.route.snapshot.params['id'])) {
+          this.formGroup.patchValue({
+            category: this.categoryList[i].pk,
+            // formControlName2: myValue2 (can be omitted)
+          });
+          break;
+        }
+      }
+    });
+
   }
   ngOnInit(): void {
-
-    this.editonServices.search(`${this.page}`, "", null, "").then((res) => {
+    this.categoryId = this.route.snapshot.params["id"] != null ? Number(this.route.snapshot.params["id"]) : null;
+    this.editonServices.search(`${this.page}`, "", this.categoryId, "").then((res) => {
       this.edList = res;
     });
+
+
   }
   searchEditions(): void {
     this.edList = null;

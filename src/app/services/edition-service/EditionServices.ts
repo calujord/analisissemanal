@@ -40,7 +40,7 @@ export class EditionService {
     search(page: string, query: string, category: number, date_range: string): Promise<EditionList> { // 
         let par = new HttpParams()
             .set("q", query)
-            .set("category", category != null ? `${category}` : "")
+            .set("category_id", category != null ? `${category}` : "")
             .set("publication_date", date_range != null ? `${date_range}` : "");
         this.connect.endPoint = `/articles/search/?${par.toString()}`;
         return this.connect.httpGet();

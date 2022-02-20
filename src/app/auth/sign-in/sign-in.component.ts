@@ -1,7 +1,9 @@
 import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { TermsConditionComponent } from 'src/app/home/terms-condition/terms-condition.component';
 import { LayoutService } from 'src/app/layout.service';
 import { BusinessCreateAccount } from 'src/app/models/business/business-create-account';
 import { BusinessModel } from 'src/app/models/business/business.models';
@@ -39,6 +41,7 @@ export class SignInComponent implements OnInit {
     person_type: 'B',
     avatar: null,
   } */
+  aceptado = false;
   fiscalFormGroup: FormGroup
   userFormGroup: FormGroup
   stepLabel2 = 'Información fiscal';
@@ -50,6 +53,7 @@ export class SignInComponent implements OnInit {
     private stService: StorageService,
     private router: Router,
     private fb: FormBuilder,
+    private dialog: MatDialog,
     private layoutSevice: LayoutService
   ) { }
 
@@ -77,8 +81,22 @@ export class SignInComponent implements OnInit {
 
 
   }
+  confirmTerms(v) {
+    if (this.aceptado == true) {
+      let dialogTerms = this.dialog.open(TermsConditionComponent, {
+      });
 
+      dialogTerms.afterClosed().subscribe(result => {
+        console.log('The dialog was closed');
+        this.aceptado = result;
+      });
+    }
+  }
+  isBusiness(): boolean {
+    return this.fiscalFormGroup.get("person_typefc").value === "B";
+  }
   saveRegister() {
+    console.log("Testes!!!");
     let business: BusinessModel = {
       identification: this.fiscalFormGroup.get("identificacionfc").value,
       name: this.fiscalFormGroup.get("namefc").value,
@@ -95,7 +113,7 @@ export class SignInComponent implements OnInit {
       business
     ).then((res: BusinessCreateAccount) => {
       this.stService.setCurrentSession(res);
-      this.router.navigate(['/']).then();
+      this.router.navigate(['/discovery']).then();
     });
   }
   validadorParContrasena: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {

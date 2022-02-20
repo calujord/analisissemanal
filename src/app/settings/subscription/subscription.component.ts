@@ -24,7 +24,9 @@ export class SubscriptionComponent implements OnInit {
       this.bsal = res;
     });
   }
+  reload() {
 
+  }
   getEditionByLang(lang: String): BusinessSubscriptionAddress[] {
     if (this.bsal != null)
       return this.bsal.object_list.filter(lang == "ES" ? this.filterSpanish : this.filterEnglish);

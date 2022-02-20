@@ -21,6 +21,7 @@ import { EditionCardItemComponent } from '../edition-card-item/edition-card-item
 import { MatCardModule } from '@angular/material/card';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 
 @NgModule({
@@ -51,7 +52,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatCardModule,
     FormsModule,
     MatFormFieldModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatExpansionModule,
 
 
   ],
