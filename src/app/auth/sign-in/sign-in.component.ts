@@ -76,12 +76,15 @@ export class SignInComponent implements OnInit {
     this.userFormGroup = this.fb.group({
       correofc: ['', [Validators.required, Validators.email]],
       contrasena: ['', [Validators.required, Validators.minLength(4)]],
-      validarcontrasena: ['', [Validators.required]]
+      validarcontrasena: ['', [Validators.required]],
+      aceptado: [false, [Validators.required]]
     }, { validators: this.validadorParContrasena });
 
 
   }
-  confirmTerms(v) {
+  confirmTerms() {
+    this.aceptado = !this.aceptado;
+    console.log(this.aceptado);
     if (this.aceptado == true) {
       let dialogTerms = this.dialog.open(TermsConditionComponent, {
       });

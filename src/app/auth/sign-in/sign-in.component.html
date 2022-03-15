@@ -61,7 +61,7 @@
             <mat-label>Repetir Contraseña</mat-label>
             <input matInput type="password" formControlName="validarcontrasena">
           </mat-form-field>
-          <mat-checkbox [(ngModel)]="aceptado" (change)="confirmTerms(!aceptado)">
+          <mat-checkbox (change)="confirmTerms()">
             Acepto los Términos y Condiciones</mat-checkbox>
           <button (click)="saveRegister()" mat-raised-button color="primary"
             [disabled]="!userFormGroup.valid || !fiscalFormGroup.valid || !aceptado">Crear

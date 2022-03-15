@@ -28,7 +28,7 @@ export class UtilService {
     }
 
     getTerms(): Promise<String> {
-        this.connect.endPoint = "/terms-condition/";
+        this.connect.endPoint = "/terms-conditions/";
         return this.connect.httpGet().then((e) => e);
     }
 }
